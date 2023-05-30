@@ -20,7 +20,7 @@ const topPath = getTopMenu().path;
         class="sidebar-logo-link"
         :to="topPath"
       >
-        <img src="/logo.svg" alt="logo" />
+        <img src="/favicon.ico" alt="logo" />
         <span class="sidebar-title">{{ title }}</span>
       </router-link>
       <router-link
@@ -30,7 +30,7 @@ const topPath = getTopMenu().path;
         class="sidebar-logo-link"
         :to="topPath"
       >
-        <img src="/logo.svg" alt="logo" />
+        <img src="/favicon.ico" alt="logo" />
         <span class="sidebar-title">{{ title }}</span>
       </router-link>
     </transition>

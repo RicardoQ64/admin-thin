@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Search from "./search/index.vue";
-import Notice from "./notice/index.vue";
 import mixNav from "./sidebar/mixNav.vue";
 import { useNav } from "@/layout/hooks/useNav";
 import Breadcrumb from "./sidebar/breadCrumb.vue";
@@ -25,7 +24,7 @@ const {
     class="navbar bg-[#fff] shadow-sm shadow-[rgba(0, 21, 41, 0.08)] dark:shadow-[#0d0d0d]"
   >
     <topCollapse
-      v-if="device === 'mobile'"
+      v-if="layout === 'vertical'"
       class="hamburger-container"
       :is-active="pureApp.sidebar.opened"
       @toggleClick="toggleSideBar"
@@ -42,14 +41,11 @@ const {
       <!-- 菜单搜索 -->
       <Search />
       <!-- 通知 -->
-      <Notice id="header-notice" />
+      <!-- <Notice id="header-notice" /> -->
       <!-- 退出登录 -->
       <el-dropdown trigger="click">
         <span class="el-dropdown-link navbar-bg-hover select-none">
-          <img
-            src="https://avatars.githubusercontent.com/u/44761321?v=4"
-            :style="avatarsStyle"
-          />
+          <img src="/avator.jpeg" :style="avatarsStyle" />
           <p v-if="username" class="dark:text-white">{{ username }}</p>
         </span>
         <template #dropdown>

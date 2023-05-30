@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Search from "../search/index.vue";
-import Notice from "../notice/index.vue";
 import { ref, watch, nextTick } from "vue";
 import SidebarItem from "./sidebarItem.vue";
 import { useNav } from "@/layout/hooks/useNav";
@@ -40,7 +39,7 @@ watch(
     class="horizontal-header"
   >
     <div class="horizontal-header-left" @click="backTopMenu">
-      <img src="/logo.svg" alt="logo" />
+      <img src="/favicon.ico" style="width: 35px; height: 35px" />
       <span>{{ title }}</span>
     </div>
     <el-menu
@@ -62,14 +61,11 @@ watch(
       <!-- 菜单搜索 -->
       <Search />
       <!-- 通知 -->
-      <Notice id="header-notice" />
+      <!-- <Notice id="header-notice" /> -->
       <!-- 退出登录 -->
       <el-dropdown trigger="click">
         <span class="el-dropdown-link navbar-bg-hover">
-          <img
-            src="https://avatars.githubusercontent.com/u/44761321?v=4"
-            :style="avatarsStyle"
-          />
+          <img src="/avator.jpeg" :style="avatarsStyle" />
           <p v-if="username" class="dark:text-white">{{ username }}</p>
         </span>
         <template #dropdown>
