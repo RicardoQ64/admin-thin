@@ -17,10 +17,7 @@
     "lint:eslint": "eslint --cache --max-warnings 0  \"{src,mock,build}/**/*.{vue,js,ts,tsx}\" --fix",
     "lint:prettier": "prettier --write  \"src/**/*.{js,ts,json,tsx,css,scss,vue,html,md}\"",
     "lint:stylelint": "stylelint --cache --fix \"**/*.{html,vue,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
-    "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js",
-    "lint:pretty": "pretty-quick --staged",
     "lint": "pnpm lint:eslint && pnpm lint:prettier && pnpm lint:stylelint",
-    "prepare": "husky install",
     "preinstall": "npx only-allow pnpm"
   },
   "browserslist": [
@@ -54,8 +51,6 @@
     "vue-types": "^5.0.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.6.3",
-    "@commitlint/config-conventional": "^17.6.3",
     "@iconify-icons/ep": "^1.2.11",
     "@iconify-icons/ri": "^1.2.7",
     "@iconify/vue": "^4.1.1",
@@ -79,15 +74,12 @@
     "eslint": "^8.40.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.12.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^13.2.2",
     "picocolors": "^1.0.0",
     "postcss": "^8.4.23",
     "postcss-html": "^1.5.0",
     "postcss-import": "^15.1.0",
     "postcss-scss": "^4.0.6",
     "prettier": "^2.8.7",
-    "pretty-quick": "3.1.1",
     "rimraf": "^5.0.0",
     "rollup-plugin-visualizer": "^5.9.0",
     "sass": "^1.62.1",
