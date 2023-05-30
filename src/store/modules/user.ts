@@ -13,12 +13,19 @@ export const useUserStore = defineStore({
   id: "pure-user",
   state: (): userType => ({
     // 用户名
+    userNo:
+      storageSession().getItem<DataInfo<number>>(sessionKey)?.user_no ?? "",
+    // 用户名
     username:
       storageSession().getItem<DataInfo<number>>(sessionKey)?.username ?? "",
     // 页面级别权限
     roles: storageSession().getItem<DataInfo<number>>(sessionKey)?.roles ?? []
   }),
   actions: {
+    /** 存储工号 */
+    SET_USERNO(userNo: string) {
+      this.userNo = userNo;
+    },
     /** 存储用户名 */
     SET_USERNAME(username: string) {
       this.username = username;
