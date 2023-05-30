@@ -22,12 +22,10 @@ import {
   hasClass
 } from "@pureadmin/utils";
 
-import Fullscreen from "@iconify-icons/ri/fullscreen-fill";
 import CloseAllTags from "@iconify-icons/ri/subtract-line";
 import CloseOtherTags from "@iconify-icons/ri/text-spacing";
 import CloseRightTags from "@iconify-icons/ri/text-direction-l";
 import CloseLeftTags from "@iconify-icons/ri/text-direction-r";
-import RefreshRight from "@iconify-icons/ep/refresh-right";
 import Close from "@iconify-icons/ep/close";
 
 export function useTags() {
@@ -62,13 +60,6 @@ export function useTags() {
   });
 
   const tagsViews = reactive<Array<tagsViewsType>>([
-    {
-      icon: RefreshRight,
-      text: "重新加载",
-      divided: false,
-      disabled: false,
-      show: true
-    },
     {
       icon: Close,
       text: "关闭当前标签页",
@@ -105,16 +96,9 @@ export function useTags() {
       show: true
     },
     {
-      icon: Fullscreen,
+      icon: "fullscreen",
       text: "整体页面全屏",
       divided: true,
-      disabled: false,
-      show: true
-    },
-    {
-      icon: Fullscreen,
-      text: "内容区全屏",
-      divided: false,
       disabled: false,
       show: true
     }

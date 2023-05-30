@@ -12,7 +12,6 @@ import { useResizeObserver, useDebounceFn, useFullscreen } from "@vueuse/core";
 
 import ExitFullscreen from "@iconify-icons/ri/fullscreen-exit-fill";
 import Fullscreen from "@iconify-icons/ri/fullscreen-fill";
-import ArrowDown from "@iconify-icons/ri/arrow-down-s-line";
 import ArrowRightSLine from "@iconify-icons/ri/arrow-right-s-line";
 import ArrowLeftSLine from "@iconify-icons/ri/arrow-left-s-line";
 import CloseBold from "@iconify-icons/ep/close-bold";
@@ -40,8 +39,7 @@ const {
   closeMenu,
   onMounted,
   onMouseenter,
-  onMouseleave,
-  onContentFullScreen
+  onMouseleave
 } = useTags();
 
 const tabDom = ref();
@@ -160,6 +158,12 @@ function dynamicRouteTag(value: string, parentPath: string): void {
   concatPath(router.options.routes as any, value, parentPath);
 }
 
+function onFullScreen() {
+  pureSetting.hiddenSideBar
+    ? pureSetting.changeSetting({ key: "hiddenSideBar", value: false })
+    : pureSetting.changeSetting({ key: "hiddenSideBar", value: true });
+}
+
 /** 刷新路由 */
 function onFresh() {
   const { fullPath, query } = unref(route);
@@ -261,36 +265,35 @@ function onClickDrop(key, item, selectRoute?: RouteConfigs) {
 
   // 当前路由信息
   switch (key) {
+    // case 0:
+    //   // 刷新路由
+    //   onFresh();
+    //   break;
     case 0:
-      // 刷新路由
-      onFresh();
-      break;
-    case 1:
       // 关闭当前标签页
       deleteMenu(selectTagRoute);
       break;
-    case 2:
+    case 1:
       // 关闭左侧标签页
       deleteMenu(selectTagRoute, "left");
       break;
-    case 3:
+    case 2:
       // 关闭右侧标签页
       deleteMenu(selectTagRoute, "right");
       break;
-    case 4:
+    case 3:
       // 关闭其他标签页
       deleteMenu(selectTagRoute, "other");
       break;
-    case 5:
+    case 4:
       // 关闭全部标签页
       useMultiTagsStoreHook().handleTags("splice", "", {
         startIndex: 1,
         length: multiTags.value.length
       });
-      router.push(topPath);
-      handleAliveRoute(route as toRouteType);
+      router.push("/welcome");
       break;
-    case 6:
+    case 5:
       // 整体页面全屏
       toggle();
       setTimeout(() => {
@@ -300,19 +303,6 @@ function onClickDrop(key, item, selectRoute?: RouteConfigs) {
         } else {
           tagsViews[6].icon = Fullscreen;
           tagsViews[6].text = "全屏";
-        }
-      }, 100);
-      break;
-    case 7:
-      // 内容区全屏
-      onContentFullScreen();
-      setTimeout(() => {
-        if (pureSetting.hiddenSideBar) {
-          tagsViews[7].icon = ExitFullscreen;
-          tagsViews[7].text = "内容区退出全屏";
-        } else {
-          tagsViews[7].icon = Fullscreen;
-          tagsViews[7].text = "内容区全屏";
         }
       }, 100);
       break;
@@ -580,29 +570,60 @@ onMounted(() => {
       </ul>
     </transition>
     <!-- 右侧功能按钮 -->
-    <el-dropdown
-      trigger="click"
-      placement="bottom-end"
-      @command="handleCommand"
-    >
-      <span class="arrow-down">
-        <IconifyIconOffline :icon="ArrowDown" class="dark:text-white" />
-      </span>
-      <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item
-            v-for="(item, key) in tagsViews"
-            :key="key"
-            :command="{ key, item }"
-            :divided="item.divided"
-            :disabled="item.disabled"
-          >
-            <IconifyIconOffline :icon="item.icon" />
-            {{ item.text }}
-          </el-dropdown-item>
-        </el-dropdown-menu>
-      </template>
-    </el-dropdown>
+    <ul class="right-button">
+      <li>
+        <el-dropdown
+          trigger="click"
+          placement="bottom-end"
+          @command="handleCommand"
+        >
+          <span class="arrow-down">
+            <IconifyIconOffline icon="arrow-down" class="dark:text-white" />
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item
+                v-for="(item, key) in tagsViews"
+                :key="key"
+                :command="{ key, item }"
+                :divided="item.divided"
+                :disabled="item.disabled"
+              >
+                <IconifyIconOffline :icon="item.icon" />
+                {{ item.text }}
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </li>
+      <li>
+        <span
+          :title="'刷新'"
+          class="el-icon-refresh-right rotate"
+          @click="onFresh"
+        >
+          <IconifyIconOffline icon="refresh-right" />
+        </span>
+      </li>
+      <li>
+        <span
+          v-if="pureSetting.hiddenSideBar"
+          :title="'内容区全屏'"
+          class="el-icon-refresh-right rotate"
+          @click="onFullScreen"
+        >
+          <IconifyIconOffline icon="exit-fullscreen" />
+        </span>
+        <span
+          v-else-if="!pureSetting.hiddenSideBar"
+          :title="'退出全屏'"
+          class="el-icon-refresh-right rotate"
+          @click="onFullScreen"
+        >
+          <IconifyIconOffline icon="fullscreen" />
+        </span>
+      </li>
+    </ul>
   </div>
 </template>
 

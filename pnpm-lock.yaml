@@ -2,6 +2,8 @@ lockfileVersion: 5.4
 
 specifiers:
   '@iconify-icons/ep': ^1.2.11
+  '@iconify-icons/material-symbols': ^1.2.42
+  '@iconify-icons/radix-icons': ^1.2.8
   '@iconify-icons/ri': ^1.2.7
   '@iconify/vue': ^4.1.1
   '@pureadmin/descriptions': ^1.1.1
@@ -108,6 +110,8 @@ dependencies:
 
 devDependencies:
   '@iconify-icons/ep': 1.2.11
+  '@iconify-icons/material-symbols': 1.2.42
+  '@iconify-icons/radix-icons': 1.2.8
   '@iconify-icons/ri': 1.2.7
   '@iconify/vue': 4.1.1_vue@3.3.1
   '@pureadmin/theme': 3.0.0
@@ -795,6 +799,18 @@ packages:
 
   /@iconify-icons/ep/1.2.11:
     resolution: {integrity: sha512-6wBR3xVbWpEfxlkriDG27PT3Z0t09Z/G/IH05Ql7XlhVRs8v2bKFPslNHkwBnZXaaR9hTB+5J+MBR5rrK16vcw==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-icons/material-symbols/1.2.42:
+    resolution: {integrity: sha512-G4uof6y8dIED7vLfFr/q22k2WBw4mmr1e21hZ7D6qZu09vejapML7ok+BiG+36v6Z6Vw3UBqtmwoj5c/bZnfIg==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-icons/radix-icons/1.2.8:
+    resolution: {integrity: sha512-bZqRIbeqe6yNSLPgcQOyOl86C2P/apaY9Dq/BddWxitN8olbTp2MLuDJenNF+wxbQGgKkQFfm3vb6Z+4Nbhk+g==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true

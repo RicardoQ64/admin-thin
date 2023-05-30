@@ -43,7 +43,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  font-size: 14px;
+  font-size: 12px;
   color: var(--el-text-color-primary);
   background: #fff;
   box-shadow: 0 0 1px #888;
@@ -118,6 +118,21 @@
           margin-left: 5px;
         }
       }
+    }
+  }
+  
+  .right-button {
+    display: flex;
+    font-size: 16px;
+  
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 38px;
+      border-right: 1px solid #e6e6e6;
+      cursor: pointer;
     }
   }
 
