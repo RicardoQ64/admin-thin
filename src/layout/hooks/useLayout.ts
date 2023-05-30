@@ -27,8 +27,6 @@ export function useLayout() {
     /** 灰色模式、色弱模式、隐藏标签页 */
     if (!$storage.configure) {
       $storage.configure = {
-        grey: $config?.Grey ?? false,
-        weak: $config?.Weak ?? false,
         hideTabs: $config?.HideTabs ?? false,
         showLogo: $config?.ShowLogo ?? true,
         showModel: $config?.ShowModel ?? "smart",

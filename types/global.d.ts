@@ -87,8 +87,6 @@ declare global {
     Layout?: string;
     Theme?: string;
     DarkMode?: boolean;
-    Grey?: boolean;
-    Weak?: boolean;
     HideTabs?: boolean;
     SidebarStatus?: boolean;
     EpThemeColor?: string;
@@ -115,8 +113,6 @@ declare global {
     layout?: string;
     theme?: string;
     darkMode?: boolean;
-    grey?: boolean;
-    weak?: boolean;
     hideTabs?: boolean;
     sidebarStatus?: boolean;
     epThemeColor?: string;
@@ -140,8 +136,6 @@ declare global {
       epThemeColor?: string;
     };
     configure: {
-      grey?: boolean;
-      weak?: boolean;
       hideTabs?: boolean;
       showLogo?: boolean;
       showModel?: string;

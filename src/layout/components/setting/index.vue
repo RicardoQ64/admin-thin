@@ -67,8 +67,6 @@ const markValue = ref($storage.configure?.showModel ?? "smart");
 const logoVal = ref($storage.configure?.showLogo ?? true);
 
 const settings = reactive({
-  greyVal: $storage.configure.grey,
-  weakVal: $storage.configure.weak,
   tabsVal: $storage.configure.hideTabs,
   showLogo: $storage.configure.showLogo,
   showModel: $storage.configure.showModel,
@@ -101,22 +99,6 @@ function toggleClass(flag: boolean, clsName: string, target?: HTMLElement) {
   targetEl.className = flag ? `${className} ${clsName} ` : className;
 }
 
-/** 灰色模式设置 */
-const greyChange = (value): void => {
-  toggleClass(settings.greyVal, "html-grey", document.querySelector("html"));
-  storageConfigureChange("grey", value);
-};
-
-/** 色弱模式设置 */
-const weekChange = (value): void => {
-  toggleClass(
-    settings.weakVal,
-    "html-weakness",
-    document.querySelector("html")
-  );
-  storageConfigureChange("weak", value);
-};
-
 const tagsChange = () => {
   const showVal = settings.tabsVal;
   storageConfigureChange("hideTabs", showVal);
@@ -134,12 +116,10 @@ function onReset() {
   removeToken();
   storageLocal().clear();
   storageSession().clear();
-  const { Grey, Weak, MultiTagsCache, EpThemeColor, Layout } = getConfig();
+  const { MultiTagsCache, EpThemeColor, Layout } = getConfig();
   useAppStoreHook().setLayout(Layout);
   setEpThemeColor(EpThemeColor);
   useMultiTagsStoreHook().multiTagsCacheChange(MultiTagsCache);
-  toggleClass(Grey, "html-grey", document.querySelector("html"));
-  toggleClass(Weak, "html-weakness", document.querySelector("html"));
   router.push("/login");
   useMultiTagsStoreHook().handleTags("equal", [...routerArrays]);
   resetRouter();
@@ -221,10 +201,6 @@ onBeforeMount(() => {
   dataThemeChange();
   /* 初始化项目配置 */
   nextTick(() => {
-    settings.greyVal &&
-      document.querySelector("html")?.setAttribute("class", "html-grey");
-    settings.weakVal &&
-      document.querySelector("html")?.setAttribute("class", "html-weakness");
     settings.tabsVal && tagsChange();
   });
 });
@@ -319,28 +295,6 @@ onBeforeMount(() => {
 
     <el-divider>界面显示</el-divider>
     <ul class="setting">
-      <li>
-        <span class="dark:text-white">灰色模式</span>
-        <el-switch
-          v-model="settings.greyVal"
-          inline-prompt
-          inactive-color="#a6a6a6"
-          active-text="开"
-          inactive-text="关"
-          @change="greyChange"
-        />
-      </li>
-      <li>
-        <span class="dark:text-white">色弱模式</span>
-        <el-switch
-          v-model="settings.weakVal"
-          inline-prompt
-          inactive-color="#a6a6a6"
-          active-text="开"
-          inactive-text="关"
-          @change="weekChange"
-        />
-      </li>
       <li>
         <span class="dark:text-white">隐藏标签页</span>
         <el-switch

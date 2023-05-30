@@ -1,6 +1,6 @@
 {
   "Version": "4.1.0",
-  "Title": "PureAdmin",
+  "Title": "综合管理平台",
   "FixedHeader": true,
   "HiddenSideBar": false,
   "MultiTagsCache": false,
@@ -8,8 +8,6 @@
   "Layout": "vertical",
   "Theme": "default",
   "DarkMode": false,
-  "Grey": false,
-  "Weak": false,
   "HideTabs": false,
   "SidebarStatus": true,
   "EpThemeColor": "#409EFF",
