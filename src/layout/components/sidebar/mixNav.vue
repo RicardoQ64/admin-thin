@@ -2,6 +2,7 @@
 import extraIcon from "./extraIcon.vue";
 import Search from "../search/index.vue";
 import { useNav } from "@/layout/hooks/useNav";
+import topCollapse from "../sidebar/topCollapse.vue";
 import { ref, toRaw, watch, onMounted, nextTick } from "vue";
 import { useRenderIcon } from "@/components/ReIcon/src/hooks";
 import { getParentPaths, findRouteByPath } from "@/router/utils";
@@ -13,16 +14,19 @@ const menuRef = ref();
 const defaultActive = ref(null);
 
 const {
+  layout,
   route,
   device,
   routers,
   logout,
   onPanel,
+  pureApp,
   menuSelect,
   resolvePath,
   username,
   getDivStyle,
-  avatarsStyle
+  avatarsStyle,
+  toggleSideBar
 } = useNav();
 
 function getDefaultActive(routePath) {
@@ -57,6 +61,12 @@ watch(
     class="horizontal-header"
     v-loading="usePermissionStoreHook().wholeMenus.length === 0"
   >
+    <topCollapse
+      v-if="layout === 'mix'"
+      class="hamburger-container"
+      :is-active="pureApp.sidebar.opened"
+      @toggleClick="toggleSideBar"
+    />
     <el-menu
       router
       ref="menuRef"
@@ -134,6 +144,15 @@ watch(
     display: inline-flex;
     flex-wrap: wrap;
     min-width: 100%;
+  }
+}
+
+.hamburger-container {
+  cursor: pointer;
+  color: $menuText;
+
+  &:hover {
+    color: $menuTitleHover;
   }
 }
 </style>

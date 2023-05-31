@@ -16,6 +16,6 @@
   }
 
   .navbar-bg-hover {
-    @apply dark:text-white dark:hover:!bg-[#242424];
+    @apply dark:text-white dark:hover:!bg-[#141414];
   }
 }
