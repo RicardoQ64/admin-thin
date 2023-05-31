@@ -18,6 +18,18 @@ html.dark {
     background: var(--el-bg-color) !important;
   }
 
+  .sidebar-container .el-menu .el-sub-menu .el-menu-item,
+  .sidebar-container .el-menu .el-sub-menu .el-menu--inline .el-sub-menu__title,
+  .el-popper .el-menu--popup-container .el-menu--popup,
+  .el-menu--horizontal .el-menu--popup .el-menu-item,
+  .el-menu--horizontal .el-menu .el-sub-menu .el-sub-menu__title {
+    background-color: #262727 !important;
+  }
+
+  .layout-theme-default {
+    background-color: #262727 !important;
+  }
+  
   .app-main {
     background: #020409 !important;
   }
