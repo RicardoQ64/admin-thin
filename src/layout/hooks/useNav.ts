@@ -70,7 +70,7 @@ export function useNav() {
   }
 
   function backTopMenu() {
-    router.push(getTopMenu().path);
+    router.push(getTopMenu()?.path);
   }
 
   function onPanel() {
