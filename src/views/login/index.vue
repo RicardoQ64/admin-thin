@@ -119,6 +119,7 @@ onBeforeUnmount(() => {
                   v-model="ruleForm.username"
                   placeholder="账号"
                   :prefix-icon="useRenderIcon(User)"
+                  @keyup.enter="onLogin(ruleFormRef)"
                 />
               </el-form-item>
             </Motion>
@@ -131,6 +132,7 @@ onBeforeUnmount(() => {
                   v-model="ruleForm.password"
                   placeholder="密码"
                   :prefix-icon="useRenderIcon(Lock)"
+                  @keyup.enter="onLogin(ruleFormRef)"
                 />
               </el-form-item>
             </Motion>
