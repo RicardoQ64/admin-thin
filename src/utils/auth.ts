@@ -46,26 +46,34 @@ export function setToken(data: DataInfo<Date>) {
       })
     : Cookies.set(TokenKey, cookieString);
 
-  function setSessionKey(username: string, roles: Array<string>) {
+  function setSessionKey(
+    user_no: string,
+    username: string,
+    roles: Array<string>
+  ) {
+    useUserStoreHook().SET_USERNO(user_no);
     useUserStoreHook().SET_USERNAME(username);
     useUserStoreHook().SET_ROLES(roles);
     storageSession().setItem(sessionKey, {
       refreshToken,
       expires,
+      user_no,
       username,
       roles
     });
   }
 
   if (data.username && data.roles) {
-    const { username, roles } = data;
-    setSessionKey(username, roles);
+    const { user_no, username, roles } = data;
+    setSessionKey(user_no, username, roles);
   } else {
+    const user_no =
+      storageSession().getItem<DataInfo<number>>(sessionKey)?.user_no ?? "";
     const username =
       storageSession().getItem<DataInfo<number>>(sessionKey)?.username ?? "";
     const roles =
       storageSession().getItem<DataInfo<number>>(sessionKey)?.roles ?? [];
-    setSessionKey(username, roles);
+    setSessionKey(user_no, username, roles);
   }
 }
 
