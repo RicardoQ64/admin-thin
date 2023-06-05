@@ -49,9 +49,6 @@ emitter.on("openPanel", () => {
             />
           </span>
         </div>
-        <div
-          class="border-b-[1px] border-solid border-[#dcdfe6] dark:border-[#303030]"
-        />
         <slot />
       </div>
     </div>

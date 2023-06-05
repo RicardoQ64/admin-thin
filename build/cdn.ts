@@ -1,7 +1,7 @@
 import { Plugin as importToCDN } from "vite-plugin-cdn-import";
 
 /**
- * @description 打包时采用`cdn`模式，仅限外网使用（默认不采用，如果需要采用cdn模式，请在 .env.production 文件，将 VITE_CDN 设置成true）
+ * @description 仅限外网使用
  */
 export const cdn = importToCDN({
   //（prodUrl解释： name: 对应下面modules的name，version: 自动读取本地package.json中dependencies依赖中对应包的版本号，path: 对应下面modules的path，当然也可写完整路径，会替换prodUrl）
@@ -17,7 +17,6 @@ export const cdn = importToCDN({
       var: "VueRouter",
       path: "vue-router.global.min.js"
     },
-    // 项目中没有直接安装vue-demi，但是pinia用到了，所以需要在引入pinia前引入vue-demi（https://github.com/vuejs/pinia/blob/v2/packages/pinia/package.json#L77）
     {
       name: "vue-demi",
       var: "VueDemi",
