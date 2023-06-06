@@ -1,4 +1,3 @@
-import { cdn } from "./cdn";
 import vue from "@vitejs/plugin-vue";
 import { viteBuildInfo } from "./info";
 import svgLoader from "vite-svg-loader";
@@ -13,7 +12,6 @@ import { genScssMultipleScopeVars } from "../src/layout/theme";
 
 export function getPluginsList(
   command: string,
-  VITE_CDN: boolean,
   VITE_COMPRESSION: ViteCompression
 ) {
   const prodMock = true;
@@ -22,7 +20,6 @@ export function getPluginsList(
     vue(),
     // jsx、tsx语法支持
     vueJsx(),
-    VITE_CDN ? cdn : null,
     configCompressPlugin(VITE_COMPRESSION),
     // 线上环境删除console
     removeConsole({ external: ["src/assets/iconfont/iconfont.js"] }),
