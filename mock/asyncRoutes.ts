@@ -38,7 +38,7 @@ const permissionRouter = {
 export default [
   {
     url: "/getAsyncRoutes",
-    method: "get",
+    method: "post",
     response: () => {
       return {
         success: true,

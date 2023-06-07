@@ -31,8 +31,8 @@ dataThemeChange();
 const { title } = useNav();
 
 const ruleForm = reactive({
-  username: "admin",
-  password: "admin123"
+  user_no: "",
+  password: ""
 });
 
 const onLogin = async (formEl: FormInstance | undefined) => {
@@ -41,14 +41,20 @@ const onLogin = async (formEl: FormInstance | undefined) => {
   await formEl.validate((valid, fields) => {
     if (valid) {
       useUserStoreHook()
-        .loginByUsername({ username: ruleForm.username, password: "admin123" })
+        .loginByUsername({
+          username: ruleForm.user_no,
+          password: ruleForm.password
+        })
         .then(res => {
           if (res.success) {
             // 获取后端路由
-            initRouter().then(() => {
+            initRouter(ruleForm.user_no).then(() => {
               router.push(getTopMenu(true).path);
               message("登录成功", { type: "success" });
             });
+          } else {
+            message("登录失败", { type: "warning" });
+            loading.value = false;
           }
         });
     } else {
@@ -112,11 +118,11 @@ onBeforeUnmount(() => {
                     trigger: 'blur'
                   }
                 ]"
-                prop="username"
+                prop="user_no"
               >
                 <el-input
                   clearable
-                  v-model="ruleForm.username"
+                  v-model="ruleForm.user_no"
                   placeholder="账号"
                   :prefix-icon="useRenderIcon(User)"
                   @keyup.enter="onLogin(ruleFormRef)"

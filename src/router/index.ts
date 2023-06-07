@@ -139,12 +139,14 @@ router.beforeEach((to: toRouteType, _from, next) => {
         toCorrectRoute();
       }
     } else {
+      const user_no =
+        storageSession().getItem<DataInfo<number>>(sessionKey)?.user_no ?? "";
       // 刷新
       if (
         usePermissionStoreHook().wholeMenus.length === 0 &&
         to.path !== "/login"
       ) {
-        initRouter().then((router: Router) => {
+        initRouter(user_no).then((router: Router) => {
           if (!useMultiTagsStoreHook().getMultiTagsCache) {
             const { path } = to;
             const route = findRouteByPath(

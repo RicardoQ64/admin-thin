@@ -13,6 +13,20 @@ import { stringify } from "qs";
 import NProgress from "../progress";
 import { getToken, formatToken } from "@/utils/auth";
 import { useUserStoreHook } from "@/store/modules/user";
+import CryptoJS from "crypto-js";
+const { VITE_IS_Encrypt, VITE_AES_KEY, VITE_AES_IV } = import.meta.env;
+
+const Encrypt = datas => {
+  const key = CryptoJS.enc.Utf8.parse(VITE_AES_KEY);
+  const iv = CryptoJS.enc.Utf8.parse(VITE_AES_IV);
+
+  const encrypted = CryptoJS.AES.encrypt(JSON.stringify(datas), key, {
+    iv,
+    mode: CryptoJS.mode.CBC,
+    padding: CryptoJS.pad.Pkcs7
+  }).toString();
+  return encrypted;
+};
 
 // 相关配置请参考：www.axios-js.com/zh-cn/docs/#axios-request-config-1
 const defaultConfig: AxiosRequestConfig = {
@@ -63,6 +77,20 @@ class PureHttp {
       async (config: PureHttpRequestConfig): Promise<any> => {
         // 开启进度条动画
         NProgress.start();
+
+        if (VITE_IS_Encrypt === "true") {
+          // 对请求的params进行加密
+          if (config.params) {
+            const encryptedParams = Encrypt(config.params);
+            config.params = { encryptedParams };
+          }
+          // 对请求的data进行加密
+          if (config.data) {
+            const encryptedData = Encrypt(config.data);
+            config.data = { encryptedData };
+          }
+        }
+
         // 优先判断post/get等方法是否传入回调，否则执行初始化设置等回调
         if (typeof config.beforeRequestCallback === "function") {
           config.beforeRequestCallback(config);

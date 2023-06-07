@@ -5,6 +5,6 @@ type Result = {
   data: Array<any>;
 };
 
-export const getAsyncRoutes = () => {
-  return http.request<Result>("get", "/getAsyncRoutes");
+export const getAsyncRoutes = (params?: object) => {
+  return http.request<Result>("post", "/getAsyncRoutes", { params });
 };
