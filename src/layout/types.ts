@@ -76,7 +76,7 @@ export type menuType = {
     extraIcon?: string;
   };
   showTooltip?: boolean;
-  parentId?: number;
+  pid?: number;
   pathList?: number[];
   redirect?: string;
 };

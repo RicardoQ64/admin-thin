@@ -25,7 +25,7 @@ const Encrypt = datas => {
     mode: CryptoJS.mode.CBC,
     padding: CryptoJS.pad.Pkcs7
   }).toString();
-  return encrypted;
+  return decodeURIComponent(encrypted);
 };
 
 // 相关配置请参考：www.axios-js.com/zh-cn/docs/#axios-request-config-1

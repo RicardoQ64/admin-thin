@@ -92,7 +92,7 @@ const getSubMenuDivStyle = computed((): any => {
       : {
           width: "100%",
           textAlign:
-            item?.parentId === null
+            item?.pid === null
               ? "center"
               : layout.value === "mix" && item?.pathList?.length === 2
               ? "center"
@@ -138,7 +138,7 @@ function hoverMenu(key) {
 function overflowSlice(text, item?: any) {
   const newText =
     (text?.length > 1 ? text.toString().slice(0, 1) : text) + "...";
-  if (item && !(isCollapse.value && item?.parentId === null)) {
+  if (item && !(isCollapse.value && item?.pid === null)) {
     return layout.value === "mix" &&
       item?.pathList?.length === 2 &&
       isCollapse.value
@@ -279,7 +279,7 @@ function resolvePath(routePath) {
           !(
             isCollapse &&
             toRaw(props.item.meta.icon) &&
-            props.item.parentId === null
+            props.item.pid === null
           )
         "
       >

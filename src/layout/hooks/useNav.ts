@@ -36,6 +36,11 @@ export function useNav() {
     return useUserStoreHook()?.username;
   });
 
+  /** 机构号 */
+  const org_no = computed(() => {
+    return useUserStoreHook()?.orgNo;
+  });
+
   const avatarsStyle = computed(() => {
     return username.value ? { marginRight: "10px" } : "";
   });
@@ -150,6 +155,7 @@ export function useNav() {
     isCollapse,
     pureApp,
     username,
+    org_no,
     avatarsStyle,
     tooltipEffect
   };

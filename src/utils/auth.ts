@@ -15,6 +15,10 @@ export interface DataInfo<T> {
   username?: string;
   /** 当前登陆用户的角色 */
   roles?: Array<string>;
+  /** 当前登陆用户的机构号 */
+  org_no?: string;
+  /** 当前登陆用户的手机号 */
+  phone?: string;
 }
 
 export const sessionKey = "user-info";
@@ -49,23 +53,35 @@ export function setToken(data: DataInfo<Date>) {
   function setSessionKey(
     user_no: string,
     username: string,
-    roles: Array<string>
+    roles: Array<string>,
+    org_no: string,
+    phone: string
   ) {
     useUserStoreHook().SET_USERNO(user_no);
     useUserStoreHook().SET_USERNAME(username);
     useUserStoreHook().SET_ROLES(roles);
+    useUserStoreHook().SET_ORGNO(org_no);
+    useUserStoreHook().SET_PHONE(phone);
     storageSession().setItem(sessionKey, {
       refreshToken,
       expires,
       user_no,
       username,
-      roles
+      roles,
+      org_no,
+      phone
     });
   }
 
-  if (data.username && data.roles) {
-    const { user_no, username, roles } = data;
-    setSessionKey(user_no, username, roles);
+  if (data.user_no && data.username && data.roles) {
+    const { user_no, username, roles, org_no, phone } = data;
+    setSessionKey(
+      user_no,
+      username,
+      roles,
+      org_no ? org_no : "",
+      phone ? phone : ""
+    );
   } else {
     const user_no =
       storageSession().getItem<DataInfo<number>>(sessionKey)?.user_no ?? "";
@@ -73,7 +89,11 @@ export function setToken(data: DataInfo<Date>) {
       storageSession().getItem<DataInfo<number>>(sessionKey)?.username ?? "";
     const roles =
       storageSession().getItem<DataInfo<number>>(sessionKey)?.roles ?? [];
-    setSessionKey(user_no, username, roles);
+    const org_no =
+      storageSession().getItem<DataInfo<number>>(sessionKey)?.org_no ?? "";
+    const phone =
+      storageSession().getItem<DataInfo<number>>(sessionKey)?.phone ?? "";
+    setSessionKey(user_no, username, roles, org_no, phone);
   }
 }
 

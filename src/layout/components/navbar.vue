@@ -14,6 +14,7 @@ const {
   onPanel,
   pureApp,
   username,
+  org_no,
   avatarsStyle,
   toggleSideBar
 } = useNav();
@@ -46,7 +47,11 @@ const {
       <el-dropdown trigger="click">
         <span class="el-dropdown-link navbar-bg-hover select-none">
           <img src="/avator.jpeg" :style="avatarsStyle" />
-          <p v-if="username" class="dark:text-white">{{ username }}</p>
+          <p v-if="username" class="dark:text-white">
+            {{ username }}
+            <el-divider v-if="org_no" direction="vertical" />
+            {{ org_no }}
+          </p>
         </span>
         <template #dropdown>
           <el-dropdown-menu class="logout">

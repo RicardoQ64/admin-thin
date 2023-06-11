@@ -40,4 +40,6 @@ export type userType = {
   userNo?: string;
   username?: string;
   roles?: Array<string>;
+  orgNo?: string;
+  phone?: string;
 };

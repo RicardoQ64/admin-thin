@@ -18,6 +18,7 @@ export default {
       component: () => import("@/views/welcome/index.vue"),
       meta: {
         title: "首页",
+        icon: "homeFilled",
         showLink: VITE_HIDE_HOME === "true" ? false : true
       }
     }

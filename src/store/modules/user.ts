@@ -12,14 +12,18 @@ import { type DataInfo, setToken, removeToken, sessionKey } from "@/utils/auth";
 export const useUserStore = defineStore({
   id: "pure-user",
   state: (): userType => ({
-    // 用户名
+    // 工号
     userNo:
       storageSession().getItem<DataInfo<number>>(sessionKey)?.user_no ?? "",
     // 用户名
     username:
       storageSession().getItem<DataInfo<number>>(sessionKey)?.username ?? "",
     // 页面级别权限
-    roles: storageSession().getItem<DataInfo<number>>(sessionKey)?.roles ?? []
+    roles: storageSession().getItem<DataInfo<number>>(sessionKey)?.roles ?? [],
+    // 机构号
+    orgNo: storageSession().getItem<DataInfo<number>>(sessionKey)?.org_no ?? "",
+    // 电话
+    phone: storageSession().getItem<DataInfo<number>>(sessionKey)?.phone ?? ""
   }),
   actions: {
     /** 存储工号 */
@@ -33,6 +37,14 @@ export const useUserStore = defineStore({
     /** 存储角色 */
     SET_ROLES(roles: Array<string>) {
       this.roles = roles;
+    },
+    /** 存储机构号 */
+    SET_ORGNO(orgNo: string) {
+      this.orgNo = orgNo;
+    },
+    /** 存储电话 */
+    SET_PHONE(phone: string) {
+      this.phone = phone;
     },
     /** 登入 */
     async loginByUsername(data) {
@@ -51,8 +63,11 @@ export const useUserStore = defineStore({
     },
     /** 前端登出（不调用接口） */
     logOut() {
+      this.user_no = "";
       this.username = "";
       this.roles = [];
+      this.org_no = "";
+      this.phone = "";
       removeToken();
       useMultiTagsStoreHook().handleTags("equal", [...routerArrays]);
       resetRouter();
@@ -70,8 +85,11 @@ export const useUserStore = defineStore({
           })
           .catch(error => {
             reject(error);
+            this.user_no = "";
             this.username = "";
             this.roles = [];
+            this.org_no = "";
+            this.phone = "";
             removeToken();
             useMultiTagsStoreHook().handleTags("equal", [...routerArrays]);
             resetRouter();

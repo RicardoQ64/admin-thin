@@ -62,6 +62,9 @@ declare global {
     VITE_PUBLIC_PATH: string;
     VITE_ROUTER_HISTORY: string;
     VITE_HIDE_HOME: string;
+    VITE_IS_Encrypt: string;
+    VITE_AES_KEY: string;
+    VITE_AES_IV: string;
     VITE_COMPRESSION: ViteCompression;
   }
 
