@@ -4,7 +4,7 @@ import { useRoute } from "vue-router";
 import { emitter } from "@/utils/mitt";
 import SidebarItem from "./sidebarItem.vue";
 import { useNav } from "@/layout/hooks/useNav";
-import { storageLocal } from "@pureadmin/utils";
+import { storageLocal, isAllEmpty } from "@pureadmin/utils";
 import { responsiveStorageNameSpace } from "@/config";
 import { findRouteByPath, getParentPaths } from "@/router/utils";
 import { usePermissionStoreHook } from "@/store/modules/permission";
@@ -17,7 +17,7 @@ const showLogo = ref(
   )?.showLogo ?? true
 );
 
-const { routers, device, pureApp, isCollapse, menuSelect } = useNav();
+const { device, pureApp, isCollapse, menuSelect } = useNav();
 
 const subMenuData = ref([]);
 
@@ -31,7 +31,13 @@ const loading = computed(() =>
   pureApp.layout === "mix" ? false : menuData.value.length === 0 ? true : false
 );
 
-function getSubMenuData(path: string) {
+const defaultActive = computed(() =>
+  !isAllEmpty(route.meta?.activePath) ? route.meta.activePath : route.path
+);
+
+function getSubMenuData() {
+  let path = "";
+  path = defaultActive.value;
   subMenuData.value = [];
   // path的上级路由组成的数组
   const parentPathArr = getParentPaths(
@@ -47,18 +53,18 @@ function getSubMenuData(path: string) {
   subMenuData.value = parenetRoute?.children;
 }
 
-getSubMenuData(route.path);
-
 watch(
   () => [route.path, usePermissionStoreHook().wholeMenus],
   () => {
     if (route.path.includes("/redirect")) return;
-    getSubMenuData(route.path);
-    menuSelect(route.path, routers);
+    getSubMenuData();
+    menuSelect(route.path);
   }
 );
 
 onMounted(() => {
+  getSubMenuData();
+
   emitter.on("logoChange", key => {
     showLogo.value = key;
   });
@@ -86,9 +92,8 @@ onBeforeUnmount(() => {
         mode="vertical"
         class="outer-most select-none"
         :collapse="isCollapse"
-        :default-active="route.path"
+        :default-active="defaultActive"
         :collapse-transition="false"
-        @select="indexPath => menuSelect(indexPath, routers)"
       >
         <sidebar-item
           v-for="routes in menuData"

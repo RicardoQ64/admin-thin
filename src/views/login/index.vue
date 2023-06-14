@@ -42,7 +42,7 @@ const onLogin = async (formEl: FormInstance | undefined) => {
     if (valid) {
       useUserStoreHook()
         .loginByUsername({
-          username: ruleForm.user_no,
+          user_no: ruleForm.user_no,
           password: ruleForm.password
         })
         .then(res => {

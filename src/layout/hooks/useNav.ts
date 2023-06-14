@@ -31,14 +31,29 @@ export function useNav() {
     };
   });
 
+  /** 工号 */
+  const user_no = computed(() => {
+    return useUserStoreHook()?.userNo;
+  });
+
   /** 用户名 */
   const username = computed(() => {
     return useUserStoreHook()?.username;
   });
 
+  /** 角色 */
+  const roles = computed(() => {
+    return useUserStoreHook()?.roles;
+  });
+
   /** 机构号 */
   const org_no = computed(() => {
     return useUserStoreHook()?.orgNo;
+  });
+
+  /** 手机号 */
+  const phone = computed(() => {
+    return useUserStoreHook()?.phone;
   });
 
   const avatarsStyle = computed(() => {
@@ -101,38 +116,13 @@ export function useNav() {
     }
   }
 
-  function menuSelect(indexPath: string, routers): void {
-    if (wholeMenus.value.length === 0) return;
-    if (isRemaining(indexPath)) return;
-    let parentPath = "";
-    const parentPathIndex = indexPath.lastIndexOf("/");
-    if (parentPathIndex > 0) {
-      parentPath = indexPath.slice(0, parentPathIndex);
-    }
-    /** 找到当前路由的信息 */
-    function findCurrentRoute(indexPath: string, routes) {
-      if (!routes) return console.error(errorInfo);
-      return routes.map(item => {
-        if (item.path === indexPath) {
-          if (item.redirect) {
-            findCurrentRoute(item.redirect, item.children);
-          } else {
-            /** 切换左侧菜单 通知标签页 */
-            emitter.emit("changLayoutRoute", {
-              indexPath,
-              parentPath
-            });
-          }
-        } else {
-          if (item.children) findCurrentRoute(indexPath, item.children);
-        }
-      });
-    }
-    findCurrentRoute(indexPath, routers);
+  function menuSelect(indexPath: string) {
+    if (wholeMenus.value.length === 0 || isRemaining(indexPath)) return;
+    emitter.emit("changLayoutRoute", indexPath);
   }
 
   /** 判断路径是否参与菜单 */
-  function isRemaining(path: string): boolean {
+  function isRemaining(path: string) {
     return remainingPaths.includes(path);
   }
 
@@ -154,8 +144,11 @@ export function useNav() {
     resolvePath,
     isCollapse,
     pureApp,
+    user_no,
     username,
+    roles,
     org_no,
+    phone,
     avatarsStyle,
     tooltipEffect
   };

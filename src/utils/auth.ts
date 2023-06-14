@@ -73,12 +73,12 @@ export function setToken(data: DataInfo<Date>) {
     });
   }
 
-  if (data.user_no && data.username && data.roles) {
+  if (data.user_no && data.username) {
     const { user_no, username, roles, org_no, phone } = data;
     setSessionKey(
       user_no,
       username,
-      roles,
+      roles ? roles : [],
       org_no ? org_no : "",
       phone ? phone : ""
     );

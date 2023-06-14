@@ -2,6 +2,7 @@
 import extraIcon from "./extraIcon.vue";
 import Search from "../search/index.vue";
 import { useNav } from "@/layout/hooks/useNav";
+import { isAllEmpty } from "@pureadmin/utils";
 import topCollapse from "../sidebar/topCollapse.vue";
 import { ref, toRaw, watch, onMounted, nextTick } from "vue";
 import { useRenderIcon } from "@/components/ReIcon/src/hooks";
@@ -17,11 +18,9 @@ const {
   layout,
   route,
   device,
-  routers,
   logout,
   onPanel,
   pureApp,
-  menuSelect,
   resolvePath,
   username,
   org_no,
@@ -34,10 +33,9 @@ function getDefaultActive(routePath) {
   const wholeMenus = usePermissionStoreHook().wholeMenus;
   /** 当前路由的父级路径 */
   const parentRoutes = getParentPaths(routePath, wholeMenus)[0];
-  defaultActive.value = findRouteByPath(
-    parentRoutes,
-    wholeMenus
-  )?.children[0]?.path;
+  defaultActive.value = !isAllEmpty(route.meta?.activePath)
+    ? route.meta.activePath
+    : findRouteByPath(parentRoutes, wholeMenus)?.children[0]?.path;
 }
 
 onMounted(() => {
@@ -74,7 +72,6 @@ watch(
       mode="horizontal"
       class="horizontal-header-menu"
       :default-active="defaultActive"
-      @select="indexPath => menuSelect(indexPath, routers)"
     >
       <el-menu-item
         v-for="route in usePermissionStoreHook().wholeMenus"

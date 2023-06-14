@@ -3,12 +3,12 @@ import { emitter } from "@/utils/mitt";
 import { RouteConfigs } from "../../types";
 import { useTags } from "../../hooks/useTag";
 import { routerArrays } from "@/layout/types";
-import { isEqual, isAllEmpty } from "@pureadmin/utils";
 import { handleAliveRoute, getTopMenu } from "@/router/utils";
 import { useSettingStoreHook } from "@/store/modules/settings";
+import { useResizeObserver, useFullscreen } from "@vueuse/core";
+import { isEqual, isAllEmpty, debounce } from "@pureadmin/utils";
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags";
 import { ref, watch, unref, toRaw, nextTick, onBeforeUnmount } from "vue";
-import { useResizeObserver, useDebounceFn, useFullscreen } from "@vueuse/core";
 
 import ExitFullscreen from "@iconify-icons/ri/fullscreen-exit-fill";
 import Fullscreen from "@iconify-icons/ri/fullscreen-fill";
@@ -50,20 +50,22 @@ const topPath = getTopMenu()?.path;
 const { VITE_HIDE_HOME } = import.meta.env;
 const { isFullscreen, toggle } = useFullscreen();
 
-const dynamicTagView = () => {
+const dynamicTagView = async () => {
+  await nextTick();
   const index = multiTags.value.findIndex(item => {
-    if (item.query) {
+    if (!isAllEmpty(route.query)) {
       return isEqual(route.query, item.query);
-    } else if (item.params) {
+    } else if (!isAllEmpty(route.params)) {
       return isEqual(route.params, item.params);
     } else {
-      return item.path === route.path;
+      return route.path === item.path;
     }
   });
   moveToView(index);
 };
 
 const moveToView = async (index: number): Promise<void> => {
+  await nextTick();
   const tabNavPadding = 10;
   if (!instance.refs["dynamic" + index]) return;
   const tabItemEl = instance.refs["dynamic" + index][0];
@@ -73,9 +75,6 @@ const moveToView = async (index: number): Promise<void> => {
   const scrollbarDomWidth = scrollbarDom.value
     ? scrollbarDom.value?.offsetWidth
     : 0;
-
-  // 获取视图更新后dom
-  await nextTick();
 
   // 已有标签页总长度（包含溢出部分）
   const tabDomWidth = tabDom.value ? tabDom.value?.offsetWidth : 0;
@@ -131,31 +130,29 @@ const handleScroll = (offset: number): void => {
   }
 };
 
-function dynamicRouteTag(value: string, parentPath: string): void {
+function dynamicRouteTag(value: string): void {
   const hasValue = multiTags.value.some(item => {
     return item.path === value;
   });
 
-  function concatPath(arr: object[], value: string, parentPath: string) {
+  function concatPath(arr: object[], value: string) {
     if (!hasValue) {
       arr.forEach((arrItem: any) => {
-        const pathConcat = parentPath + arrItem.path;
-        if (arrItem.path === value || pathConcat === value) {
+        if (arrItem.path === value || arrItem.path === value) {
           useMultiTagsStoreHook().handleTags("push", {
             path: value,
-            parentPath: `/${parentPath.split("/")[1]}`,
             meta: arrItem.meta,
             name: arrItem.name
           });
         } else {
           if (arrItem.children && arrItem.children.length > 0) {
-            concatPath(arrItem.children, value, parentPath);
+            concatPath(arrItem.children, value);
           }
         }
       });
     }
   }
-  concatPath(router.options.routes as any, value, parentPath);
+  concatPath(router.options.routes as any, value);
 }
 
 function onFullScreen() {
@@ -171,7 +168,7 @@ function onFresh() {
     path: "/redirect" + fullPath,
     query
   });
-  handleAliveRoute(route as toRouteType, "refresh");
+  handleAliveRoute(route as ToRouteType, "refresh");
 }
 
 function deleteDynamicTag(obj: any, current: any, tag?: string) {
@@ -244,7 +241,7 @@ function deleteDynamicTag(obj: any, current: any, tag?: string) {
 
 function deleteMenu(item, tag?: string) {
   deleteDynamicTag(item, item.path, tag);
-  handleAliveRoute(route as toRouteType);
+  handleAliveRoute(route as ToRouteType);
 }
 
 function onClickDrop(key, item, selectRoute?: RouteConfigs) {
@@ -453,7 +450,7 @@ function tagOnClick(item) {
   // showMenuModel(item?.path, item?.query);
 }
 
-watch([route], () => {
+watch(route, () => {
   activeIndex.value = -1;
   dynamicTagView();
 });
@@ -481,8 +478,8 @@ onMounted(() => {
   });
 
   //  接收侧边栏切换传递过来的参数
-  emitter.on("changLayoutRoute", ({ indexPath, parentPath }) => {
-    dynamicRouteTag(indexPath, parentPath);
+  emitter.on("changLayoutRoute", indexPath => {
+    dynamicRouteTag(indexPath);
     setTimeout(() => {
       showMenuModel(indexPath);
     });
@@ -490,9 +487,7 @@ onMounted(() => {
 
   useResizeObserver(
     scrollbarDom,
-    useDebounceFn(() => {
-      dynamicTagView();
-    }, 200)
+    debounce(() => dynamicTagView())
   );
 });
 
