@@ -4,6 +4,8 @@ import { http } from "@/utils/http";
 export type UserResult = {
   success: boolean;
   data: {
+    /** 工号 */
+    user_no: string;
     /** 用户名 */
     username: string;
     /** 当前登陆用户的角色 */

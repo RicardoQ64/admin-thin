@@ -133,7 +133,7 @@ router.beforeEach((to: ToRouteType, _from, next) => {
     if (_from?.name) {
       // name为超链接
       if (externalLink) {
-        openLink(to?.name as string, "_blank");
+        window.open(to?.name as string, "_blank");
         NProgress.done();
       } else {
         toCorrectRoute();

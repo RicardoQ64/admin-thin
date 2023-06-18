@@ -11,6 +11,7 @@ export default [
           success: true,
           data: {
             user_no: "admin",
+            username: "admin",
             // 一个用户可能有多个角色
             roles: ["admin"],
             accessToken: "eyJhbGciOiJIUzUxMiJ9.admin",
@@ -23,6 +24,7 @@ export default [
           success: true,
           data: {
             user_no: "common",
+            username: "common",
             // 一个用户可能有多个角色
             roles: ["common"],
             accessToken: "eyJhbGciOiJIUzUxMiJ9.common",
