@@ -95,7 +95,9 @@ defineExpose({ handleScroll });
       @mouseenter="handleMouse(item)"
     >
       <component :is="useRenderIcon(item.meta?.icon ?? Bookmark2Line)" />
-      <span class="result-item-title">{{ item.meta?.title }}</span>
+      <span class="result-item-title">
+        {{ item.meta?.title }}
+      </span>
       <enterOutlined />
     </div>
   </div>
