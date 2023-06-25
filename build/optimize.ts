@@ -11,7 +11,11 @@ const include = [
   "axios",
   "pinia",
   "js-cookie",
+  "vue-tippy",
+  "cropperjs",
+  "pinyin-pro",
   "sortablejs",
+  "mint-filter",
   "@vueuse/core",
   "@pureadmin/utils",
   "responsive-storage"
