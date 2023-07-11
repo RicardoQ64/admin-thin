@@ -36,7 +36,7 @@ nextTick(() => {
     class="horizontal-header"
   >
     <div class="horizontal-header-left" @click="backTopMenu">
-      <img src="/favicon.ico" style="width: 35px; height: 35px" />
+      <img src="/favicon.png" style="width: 35px; height: 35px" />
       <span>{{ title }}</span>
     </div>
     <el-menu

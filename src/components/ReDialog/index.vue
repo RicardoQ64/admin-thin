@@ -33,10 +33,11 @@ const footerButtons = computed(() => {
             }
           },
           {
-            label: "确定",
+            label: "提交",
             type: "primary",
             text: true,
             bg: true,
+            loading: true,
             btnClick: ({ dialog: { options, index } }) => {
               const done = () =>
                 closeDialog(options, index, { command: "sure" });
@@ -142,6 +143,7 @@ function handleClose(
           v-for="(btn, key) in footerButtons(options)"
           :key="key"
           v-bind="btn"
+          :loading="btn.loading && options.props?.loading"
           @click="
             btn.btnClick({
               dialog: { options, index },
