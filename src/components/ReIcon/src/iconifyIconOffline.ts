@@ -18,6 +18,8 @@ import exchangeCnyFill from "@iconify-icons/ri/exchange-cny-fill";
 import exchangeLine from "@iconify-icons/ri/exchange-line";
 import NumberLine from "@iconify-icons/ri/numbers-line";
 import LineChartLine from "@iconify-icons/ri/line-chart-line";
+import openaiLine from "@iconify-icons/ri/openai-line";
+import FileWarningLine from "@iconify-icons/ri/file-warning-line";
 addIcon("dash-board", dashboardIcon);
 addIcon("currency-line", CurrencyLine);
 addIcon("file-list", FileList);
@@ -34,6 +36,8 @@ addIcon("exchange-cny-fill", exchangeCnyFill);
 addIcon("exchange-line", exchangeLine);
 addIcon("numbers-line", NumberLine);
 addIcon("line-chart-line", LineChartLine);
+addIcon("openai-line", openaiLine);
+addIcon("file-warning-line", FileWarningLine);
 
 // remixicon
 import ArrowRightSLine from "@iconify-icons/ri/arrow-right-s-line";
@@ -59,6 +63,7 @@ import nodeTree from "@iconify-icons/ri/node-tree";
 import contactsLine from "@iconify-icons/ri/contacts-line";
 import groupLine from "@iconify-icons/ri/group-line";
 import upload2Fill from "@iconify-icons/ri/upload-2-fill";
+import fileMarkLine from "@iconify-icons/ri/file-mark-line";
 addIcon("arrow-right-s-line", ArrowRightSLine);
 addIcon("arrow-left-s-line", ArrowLeftSLine);
 addIcon("logout-circle-r-line", LogoutCircleRLine);
@@ -82,6 +87,7 @@ addIcon("node-tree", nodeTree);
 addIcon("contacts-line", contactsLine);
 addIcon("group-line", groupLine);
 addIcon("upload-2-fill", upload2Fill);
+addIcon("file-mark-line", fileMarkLine);
 
 // Material Symbols
 import wifiRounded from "@iconify-icons/material-symbols/wifi-rounded";

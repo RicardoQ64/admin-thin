@@ -27,7 +27,7 @@
   "dependencies": {
     "@pureadmin/descriptions": "^1.1.1",
     "@pureadmin/table": "^2.3.0",
-    "@pureadmin/utils": "^1.9.6",
+    "@pureadmin/utils": "^1.9.7",
     "@vue-office/docx": "^1.2.0",
     "@vue-office/excel": "^1.2.0",
     "@vue-office/pdf": "^1.2.0",

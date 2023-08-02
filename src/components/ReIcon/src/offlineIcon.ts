@@ -25,6 +25,8 @@ import Guide from "@iconify-icons/ep/guide";
 import Paperclip from "@iconify-icons/ep/paperclip";
 import UploadFilled from "@iconify-icons/ep/upload-filled";
 import PieChart from "@iconify-icons/ep/pie-chart";
+import Warning from "@iconify-icons/ep/warning";
+import ElementPlus from "@iconify-icons/ep/element-plus";
 
 addIcon("homeFilled", HomeFilled);
 addIcon("informationLine", InformationLine);
@@ -46,3 +48,5 @@ addIcon("guide", Guide);
 addIcon("paperclip", Paperclip);
 addIcon("upload-filled", UploadFilled);
 addIcon("pie-chart", PieChart);
+addIcon("warning", Warning);
+addIcon("element-plus", ElementPlus);

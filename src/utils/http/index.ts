@@ -28,6 +28,12 @@ const Encrypt = datas => {
   return decodeURIComponent(encrypted);
 };
 
+function encryptFilter(url) {
+  // 定义要跳过的路径列表
+  const list = ["/upload"];
+  return list.some(path => url.includes(path));
+}
+
 // 相关配置请参考：www.axios-js.com/zh-cn/docs/#axios-request-config-1
 const defaultConfig: AxiosRequestConfig = {
   // 请求超时时间
@@ -78,7 +84,7 @@ class PureHttp {
         // 开启进度条动画
         NProgress.start();
 
-        if (VITE_IS_Encrypt === "true") {
+        if (!encryptFilter(config.url) && VITE_IS_Encrypt === "true") {
           // 对请求的params进行加密
           if (config.params) {
             const encryptedParams = Encrypt(config.params);
@@ -102,7 +108,7 @@ class PureHttp {
         }
         /** 请求白名单，放置一些不需要token的接口（通过设置请求白名单，防止token过期后再请求造成的死循环问题） */
         const whiteList = ["/refreshToken", "/login"];
-        return whiteList.some(v => config.url.indexOf(v) > -1)
+        return whiteList.find(url => url === config.url)
           ? config
           : new Promise(resolve => {
               const data = getToken();
