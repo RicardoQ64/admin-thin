@@ -2,11 +2,20 @@
  * @description ⚠️：此文件仅供主题插件使用，请不要在此文件中导出别的工具函数（仅在页面加载前运行）
  */
 
-import { type multipleScopeVarsOptions } from "@pureadmin/theme";
+import { EpThemeColor } from "../../../public/serverConfig.json";
+
+type MultipleScopeVarsItem = {
+  scopeName: string;
+  varsContent: string;
+};
+
+/** 将vxe默认主题色和ep默认主题色保持一致 */
+const vxeColor = EpThemeColor;
 
 /** 预设主题色 */
 const themeColors = {
   default: {
+    vxeColor,
     subMenuActiveText: "#fff",
     menuBg: "#344058",
     menuHover: "#0960bd",
@@ -18,6 +27,7 @@ const themeColors = {
     menuActiveBefore: "#0960bd"
   },
   light: {
+    vxeColor,
     subMenuActiveText: "#409eff",
     menuBg: "#fff",
     menuHover: "#e0ebf6",
@@ -33,12 +43,13 @@ const themeColors = {
 /**
  * @description 将预设主题色处理成主题插件所需格式
  */
-export const genScssMultipleScopeVars = (): multipleScopeVarsOptions[] => {
-  const result = [] as multipleScopeVarsOptions[];
+export const genScssMultipleScopeVars = (): MultipleScopeVarsItem[] => {
+  const result = [] as MultipleScopeVarsItem[];
   Object.keys(themeColors).forEach(key => {
     result.push({
       scopeName: `layout-theme-${key}`,
       varsContent: `
+        $vxe-primary-color: ${themeColors[key].vxeColor} !default;
         $subMenuActiveText: ${themeColors[key].subMenuActiveText} !default;
         $menuBg: ${themeColors[key].menuBg} !default;
         $menuHover: ${themeColors[key].menuHover} !default;
@@ -49,7 +60,7 @@ export const genScssMultipleScopeVars = (): multipleScopeVarsOptions[] => {
         $menuTitleHover: ${themeColors[key].menuTitleHover} !default;
         $menuActiveBefore: ${themeColors[key].menuActiveBefore} !default;
       `
-    } as multipleScopeVarsOptions);
+    } as MultipleScopeVarsItem);
   });
   return result;
 };

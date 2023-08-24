@@ -3,6 +3,12 @@
 @import "./sidebar";
 @import "./dark";
 
+/* 重置 vxe-table 样式 */
+.vxe-button.type--button.theme--primary:hover,
+.vxe-pager .vxe-pager--num-btn:not(.is--disabled).is--active {
+  color: #fff !important;
+}
+
 /* 自定义全局 CssVar */
 :root {
   /* 左侧菜单展开、收起动画时长 */

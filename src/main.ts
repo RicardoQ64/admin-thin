@@ -9,6 +9,7 @@ import { useEcharts } from "@/plugins/echarts";
 import { injectResponsiveStorage } from "@/utils/responsive";
 
 import Table from "@pureadmin/table";
+// import { useTable } from "@/plugins/vxe-table";
 import PureDescriptions from "@pureadmin/descriptions";
 
 // 引入重置样式
@@ -54,6 +55,7 @@ getServerConfig(app).then(async config => {
     .use(ElementPlus)
     .use(useEcharts)
     .use(Table)
+    //.use(useTable)
     .use(PureDescriptions);
   app.mount("#app");
 });

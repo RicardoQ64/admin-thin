@@ -26,7 +26,9 @@ const include = [
   "responsive-storage",
   "el-table-infinite-scroll",
   "@wangeditor/editor-for-vue",
-  "vuedraggable/src/vuedraggable"
+  "vuedraggable/src/vuedraggable",
+  "xe-utils",
+  "vxe-table"
 ];
 
 /**
