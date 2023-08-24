@@ -10,15 +10,23 @@ const include = [
   "dayjs",
   "axios",
   "pinia",
+  "typeit",
+  "swiper",
   "js-cookie",
   "vue-tippy",
   "cropperjs",
   "pinyin-pro",
   "sortablejs",
   "mint-filter",
+  "swiper/modules",
+  "vue-types",
+  "v-contextmenu",
   "@vueuse/core",
   "@pureadmin/utils",
-  "responsive-storage"
+  "responsive-storage",
+  "el-table-infinite-scroll",
+  "@wangeditor/editor-for-vue",
+  "vuedraggable/src/vuedraggable"
 ];
 
 /**

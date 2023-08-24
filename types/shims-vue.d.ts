@@ -8,3 +8,7 @@ declare module "*.scss" {
   const scss: Record<string, string>;
   export default scss;
 }
+
+declare module "vue-virtual-scroller";
+declare module "vuedraggable/src/vuedraggable";
+declare module "element-plus/dist/locale/zh-cn.mjs";
