@@ -52,10 +52,11 @@ const onLogin = async (formEl: FormInstance | undefined) => {
               router.push(getTopMenu(true).path);
               message("登录成功", { type: "success" });
             });
-          } else {
-            message("登录失败", { type: "warning" });
-            loading.value = false;
           }
+        })
+        .catch(error => {
+            message(error.resonse.data.detail, { type: "warning" });
+            loading.value = false;
         });
     } else {
       loading.value = false;
