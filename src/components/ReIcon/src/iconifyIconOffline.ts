@@ -26,8 +26,10 @@ import dashboardIcon from "@iconify-icons/radix-icons/dashboard";
 import CurrencyLine from "@iconify-icons/ri/currency-line";
 import FileList from "@iconify-icons/ri/file-list-3-line";
 import draftLine from "@iconify-icons/ri/draft-line";
+import AddCircleLine from "@iconify-icons/ri/add-circle-line"
+import Pencil2 from "@iconify-icons/radix-icons/pencil-2"
+import barChart from "@iconify-icons/radix-icons/bar-chart"
 import Database from "@iconify-icons/ri/database-2-line";
-import AddFill from "@iconify-icons/ri/add-circle-line";
 import deleteBin3Line from "@iconify-icons/ri/delete-bin-3-line";
 import lockPasswordLine from "@iconify-icons/ri/lock-password-line";
 import gitBranchLine from "@iconify-icons/ri/git-branch-line";
@@ -50,8 +52,10 @@ addIcon("dash-board", dashboardIcon);
 addIcon("currency-line", CurrencyLine);
 addIcon("file-list", FileList);
 addIcon("draft-line", draftLine);
+addIcon("add-circle-line", AddCircleLine);
+addIcon("pencil-2", Pencil2);
+addIcon("bar-chart", barChart);
 addIcon("database", Database);
-addIcon("add-fill", AddFill);
 addIcon("delete-bin-3-line", deleteBin3Line);
 addIcon("lock-password-line", lockPasswordLine);
 addIcon("git-branch-line", gitBranchLine);
