@@ -21,9 +21,7 @@ const {
 </script>
 
 <template>
-  <div
-    class="navbar bg-[#fff] shadow-sm shadow-[rgba(0, 21, 41, 0.08)] dark:shadow-[#0d0d0d]"
-  >
+  <div class="navbar bg-[#fff] shadow-sm shadow-[rgba(0,21,41,0.08)]">
     <topCollapse
       v-if="layout === 'vertical'"
       class="hamburger-container"

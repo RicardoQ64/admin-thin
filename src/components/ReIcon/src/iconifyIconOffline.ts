@@ -48,6 +48,7 @@ import openaiLine from "@iconify-icons/ri/openai-line";
 import FileWarningLine from "@iconify-icons/ri/file-warning-line";
 import fileWord2Line from "@iconify-icons/ri/file-word-2-line";
 import filePdfLine from "@iconify-icons/ri/file-pdf-line";
+import GraduationCapLine from "@iconify-icons/ri/graduation-cap-line";
 addIcon("dash-board", dashboardIcon);
 addIcon("currency-line", CurrencyLine);
 addIcon("file-list", FileList);
@@ -74,6 +75,7 @@ addIcon("openai-line", openaiLine);
 addIcon("file-warning-line", FileWarningLine);
 addIcon("file-word-2-line", fileWord2Line);
 addIcon("file-pdf-line", filePdfLine);
+addIcon("graduation-cap-line", GraduationCapLine);
 
 // remixicon
 import ArrowRightSLine from "@iconify-icons/ri/arrow-right-s-line";

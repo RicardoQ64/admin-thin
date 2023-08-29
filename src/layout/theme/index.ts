@@ -17,26 +17,25 @@ const themeColors = {
   default: {
     vxeColor,
     subMenuActiveText: "#fff",
-    menuBg: "#344058",
-    menuHover: "#0960bd",
-    subMenuBg: "#404c64",
-    subMenuActiveBg: "#0960bd",
-    menuText: "rgb(254 254 254 / 65%)",
-    sidebarLogo: "#344058",
+    menuBg: "#001529",
+    menuHover: "#1677ff",
+    subMenuBg: "#000c17",
+    subMenuActiveBg: "#1677ff",
+    menuText: "rgb(254 254 254 / 75%)",
+    sidebarLogo: "#001529",
     menuTitleHover: "#fff",
-    menuActiveBefore: "#0960bd"
-  },
-  light: {
+    menuActiveBefore: "#1677ff"
+  }, light: {
     vxeColor,
-    subMenuActiveText: "#409eff",
+    subMenuActiveText: "#1677ff",
     menuBg: "#fff",
     menuHover: "#e0ebf6",
     subMenuBg: "#fff",
     subMenuActiveBg: "#e0ebf6",
-    menuText: "#7a80b4",
+    menuText: "#333",
     sidebarLogo: "#fff",
-    menuTitleHover: "#333",
-    menuActiveBefore: "#4091f7"
+    menuTitleHover: "#1677ff",
+    menuActiveBefore: "#1677ff"
   }
 };
 

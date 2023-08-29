@@ -438,7 +438,7 @@
       align-items: center;
       justify-content: flex-end;
       min-width: 340px;
-      color: $menuTitleHover;
+      color: $menuText;
 
       /* 搜索 */
       .search-container,
@@ -464,7 +464,7 @@
         justify-content: space-around;
         height: 48px;
         padding: 10px;
-        color: $menuTitleHover;
+        color: $menuText;
         cursor: pointer;
 
         p {

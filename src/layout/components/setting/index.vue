@@ -254,7 +254,7 @@ onBeforeMount(() => {
         </li>
       </el-tooltip>
 
-      <el-tooltip
+      <!-- <el-tooltip
         v-if="device !== 'mobile'"
         :effect="tooltipEffect"
         class="item"
@@ -270,7 +270,7 @@ onBeforeMount(() => {
           <div />
           <div />
         </li>
-      </el-tooltip>
+      </el-tooltip> -->
     </ul>
 
     <el-divider>主题色</el-divider>

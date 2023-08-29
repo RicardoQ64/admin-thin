@@ -1,12 +1,12 @@
 export default class MergeCell {
   private map: Map<any, any>;
   private size: number[];
-  
-  headerMerge: any[]; 
-  headerValue: any[]; 
-  bodyMapList: any[]; 
-  bodyValue: any[]; 
-  deep: any; 
+
+  headerMerge: any[];
+  headerValue: any[];
+  bodyMapList: any[];
+  bodyValue: any[];
+  deep: any;
 
   constructor(headers: any[], data: any[]) {
     this.headerMerge = [];
@@ -62,14 +62,14 @@ export default class MergeCell {
         if (row !== this.size[0]) {
           this.headerMerge.push({
             s: { r: row, c: col + i },
-            e: { r: this.size[0], c: col + i },
+            e: { r: this.size[0], c: col + i }
           });
         }
       } else {
         const size = this.map.get(cell.children);
         this.headerMerge.push({
           s: { r: row, c: col + i },
-          e: { r: row, c: col + size[1] + i },
+          e: { r: row, c: col + size[1] + i }
         });
         this.mergeHeadersCell(cell.children, row + 1, col + i);
         col += size[1];
@@ -80,14 +80,14 @@ export default class MergeCell {
   /** 表头赋值 */
   getHeadersValue(headers: any[], row: number, col: number) {
     if (!this.headerValue[row]) {
-      this.headerValue[row] = new Array(col).fill('');
+      this.headerValue[row] = new Array(col).fill("");
     }
     for (let i = 0, len = headers.length; i < len; i++) {
       const cell = headers[i];
       this.headerValue[row].push(cell.label);
       if (cell.children?.length) {
         const len = this.getCellsSize(cell.children)[1];
-        const emptyNameList = new Array(len).fill('');
+        const emptyNameList = new Array(len).fill("");
         this.headerValue[row].push(...emptyNameList);
         this.getHeadersValue(cell.children, row + 1, col + i);
       }

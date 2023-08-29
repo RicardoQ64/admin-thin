@@ -46,7 +46,8 @@ import Lock from "@iconify-icons/ep/lock";
 import CreditCard from "@iconify-icons/ep/credit-card";
 import Guide from "@iconify-icons/ep/guide";
 import ChatDotSquare from "@iconify-icons/ep/chat-dot-square";
-import ElementPlus from "@iconify-icons/ep/element-plus"
+import ElementPlus from "@iconify-icons/ep/element-plus";
+import Memo from "@iconify-icons/ep/memo";
 
 addIcon("check", Check);
 addIcon("home-filled", HomeFilled);
@@ -90,3 +91,4 @@ addIcon("credit-card", CreditCard);
 addIcon("guide", Guide);
 addIcon("chat-dot-square", ChatDotSquare);
 addIcon("element-plus", ElementPlus);
+addIcon("memo", Memo);
