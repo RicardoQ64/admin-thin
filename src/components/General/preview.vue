@@ -1,24 +1,23 @@
 <script setup lang="ts">
-import { matchType } from "../../utils/general/fileFunc";
+import { matchType } from "../../utils/general/fileFuc";
 import VueOfficePdf from "@vue-office/pdf";
 import VueOfficeDocx from "@vue-office/docx";
 import VueOfficeExcel from "@vue-office/excel";
-
-const { VITE_UPLOAD_SERVER } = import.meta.env;
+import { baseApi } from "@/api/utils";
 
 const props = defineProps({
   file: String
 });
 const type = matchType(props.file);
-const file_addr = VITE_UPLOAD_SERVER + props.file;
+const file_addr = baseApi("upload-files") + props.file;
 </script>
 
 <template>
   <vue-office-docx :src="file_addr" v-if="type == 'word'" />
-  <vue-office-pdf 
-    :src="file_addr" 
-    v-else-if="type == 'pdf'" 
-    :options="{ width: '100%' }" 
+  <vue-office-pdf
+    :src="file_addr"
+    v-else-if="type == 'pdf'"
+    :options="{ width: '100%' }"
   />
   <vue-office-excel :src="file_addr" v-else-if="type == 'excel'" />
 </template>

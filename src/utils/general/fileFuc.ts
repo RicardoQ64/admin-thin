@@ -32,7 +32,7 @@ export const matchType = fileName => {
     return "pdf";
   }
 
-  const pptlist = ["ppt"];
+  const pptlist = ["ppt", "pptx"];
   if (pptlist.some(item => item == suffix)) {
     return "ppt";
   }

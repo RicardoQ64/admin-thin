@@ -26,9 +26,9 @@ import dashboardIcon from "@iconify-icons/radix-icons/dashboard";
 import CurrencyLine from "@iconify-icons/ri/currency-line";
 import FileList from "@iconify-icons/ri/file-list-3-line";
 import draftLine from "@iconify-icons/ri/draft-line";
-import AddCircleLine from "@iconify-icons/ri/add-circle-line"
-import Pencil2 from "@iconify-icons/radix-icons/pencil-2"
-import barChart from "@iconify-icons/radix-icons/bar-chart"
+import AddCircleLine from "@iconify-icons/ri/add-circle-line";
+import Pencil2 from "@iconify-icons/radix-icons/pencil-2";
+import barChart from "@iconify-icons/radix-icons/bar-chart";
 import Database from "@iconify-icons/ri/database-2-line";
 import deleteBin3Line from "@iconify-icons/ri/delete-bin-3-line";
 import lockPasswordLine from "@iconify-icons/ri/lock-password-line";
@@ -49,6 +49,7 @@ import FileWarningLine from "@iconify-icons/ri/file-warning-line";
 import fileWord2Line from "@iconify-icons/ri/file-word-2-line";
 import filePdfLine from "@iconify-icons/ri/file-pdf-line";
 import GraduationCapLine from "@iconify-icons/ri/graduation-cap-line";
+import arrowGoBackFill from "@iconify-icons/ri/arrow-go-back-fill";
 addIcon("dash-board", dashboardIcon);
 addIcon("currency-line", CurrencyLine);
 addIcon("file-list", FileList);
@@ -76,6 +77,7 @@ addIcon("file-warning-line", FileWarningLine);
 addIcon("file-word-2-line", fileWord2Line);
 addIcon("file-pdf-line", filePdfLine);
 addIcon("graduation-cap-line", GraduationCapLine);
+addIcon("arrow-go-back-fill", arrowGoBackFill);
 
 // remixicon
 import ArrowRightSLine from "@iconify-icons/ri/arrow-right-s-line";

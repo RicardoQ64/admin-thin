@@ -9,7 +9,8 @@ export const sumWithNull = arr => {
   }, 0);
 };
 
-/** 转换数字为百分比 */ export const formatPercent = num => {
+/** 转换数字为百分比 */
+export const formatPercent = num => {
   return num.toLocaleString(undefined, {
     style: "percent",
     minimumFractionDigits: 2

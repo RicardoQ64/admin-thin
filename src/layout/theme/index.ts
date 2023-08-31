@@ -25,13 +25,14 @@ const themeColors = {
     sidebarLogo: "#001529",
     menuTitleHover: "#fff",
     menuActiveBefore: "#1677ff"
-  }, light: {
+  },
+  light: {
     vxeColor,
     subMenuActiveText: "#1677ff",
     menuBg: "#fff",
-    menuHover: "#e0ebf6",
+    menuHover: "#f6f6f6",
     subMenuBg: "#fff",
-    subMenuActiveBg: "#e0ebf6",
+    subMenuActiveBg: "#f6f6f6",
     menuText: "#333",
     sidebarLogo: "#fff",
     menuTitleHover: "#1677ff",
