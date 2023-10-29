@@ -41,4 +41,5 @@ export type userType = {
   roles?: Array<string>;
   orgNo?: string;
   phone?: string;
+  isRemembered?: boolean;
 };

@@ -1,15 +1,12 @@
-// import "@/utils/sso";
+import "@/utils/sso";
+import Cookies from "js-cookie";
 import { getConfig } from "@/config";
 import NProgress from "@/utils/progress";
-import { sessionKey, type DataInfo } from "@/utils/auth";
+import { buildHierarchyTree } from "@/utils/tree";
+import remainingRouter from "./modules/remaining";
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags";
 import { usePermissionStoreHook } from "@/store/modules/permission";
-import {
-  Router,
-  createRouter,
-  RouteRecordRaw,
-  RouteComponent
-} from "vue-router";
+import { isUrl, openLink, storageLocal, isAllEmpty } from "@pureadmin/utils";
 import {
   ascending,
   getTopMenu,
@@ -21,10 +18,18 @@ import {
   formatTwoStageRoutes,
   formatFlatteningRoutes
 } from "./utils";
-import { buildHierarchyTree } from "@/utils/tree";
-import { isUrl, openLink, storageSession, isAllEmpty } from "@pureadmin/utils";
-
-import remainingRouter from "./modules/remaining";
+import {
+  Router,
+  createRouter,
+  RouteRecordRaw,
+  RouteComponent
+} from "vue-router";
+import {
+  type DataInfo,
+  userKey,
+  removeToken,
+  multipleTabsKey
+} from "@/utils/auth";
 
 /** 自动导入全部静态路由，无需再手动引入！匹配 src/router/modules 目录（任何嵌套级别）中具有 .ts 扩展名的所有文件，除了 remaining.ts 文件
  */
@@ -106,7 +111,7 @@ router.beforeEach((to: ToRouteType, _from, next) => {
       handleAliveRoute(to);
     }
   }
-  const userInfo = storageSession().getItem<DataInfo<number>>(sessionKey);
+  const userInfo = storageLocal().getItem<DataInfo<number>>(userKey);
   NProgress.start();
   const externalLink = isUrl(to?.name as string);
   if (!externalLink) {
@@ -121,7 +126,7 @@ router.beforeEach((to: ToRouteType, _from, next) => {
   function toCorrectRoute() {
     whiteList.includes(to.fullPath) ? next(_from.fullPath) : next();
   }
-  if (userInfo) {
+  if (Cookies.get(multipleTabsKey) && userInfo) {
     // 无权限跳转403页面
     if (to.meta?.roles && !isOneOfArray(to.meta?.roles, userInfo?.roles)) {
       next({ path: "/error/403" });
@@ -140,7 +145,7 @@ router.beforeEach((to: ToRouteType, _from, next) => {
       }
     } else {
       const user_no =
-        storageSession().getItem<DataInfo<number>>(sessionKey)?.user_no ?? "";
+        storageLocal().getItem<DataInfo<number>>(userKey)?.user_no ?? "";
       // 刷新
       if (
         usePermissionStoreHook().wholeMenus.length === 0 &&
@@ -185,6 +190,7 @@ router.beforeEach((to: ToRouteType, _from, next) => {
       if (whiteList.indexOf(to.path) !== -1) {
         next();
       } else {
+        removeToken();
         next({ path: "/login" });
       }
     } else {

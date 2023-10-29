@@ -38,7 +38,7 @@ export const getLogin = (data?: object) => {
 
 /** 刷新token */
 export const refreshTokenApi = (data?: object) => {
-  return http.request<RefreshTokenResult>("post", "/refreshToken", {
+  return http.request<RefreshTokenResult>("post", "refresh-token", {
     data
   });
 };

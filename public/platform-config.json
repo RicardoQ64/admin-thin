@@ -9,6 +9,7 @@
   "Theme": "default",
   "DarkMode": false,
   "HideTabs": false,
+  "HideFooter": true,
   "SidebarStatus": true,
   "EpThemeColor": "#1677ff",
   "ShowLogo": true,

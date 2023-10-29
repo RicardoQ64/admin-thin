@@ -6,5 +6,5 @@ type Result = {
 };
 
 export const getAsyncRoutes = (params?: object) => {
-  return http.request<Result>("post", "/getAsyncRoutes", { params });
+  return http.request<Result>("post", "/get-async-routes", { params });
 };

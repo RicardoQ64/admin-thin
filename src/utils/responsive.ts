@@ -4,7 +4,7 @@ import Storage from "responsive-storage";
 import { routerArrays } from "@/layout/types";
 import { responsiveStorageNameSpace } from "@/config";
 
-export const injectResponsiveStorage = (app: App, config: ServerConfigs) => {
+export const injectResponsiveStorage = (app: App, config: PlatformConfigs) => {
   const nameSpace = responsiveStorageNameSpace();
   const configObj = Object.assign(
     {
@@ -18,6 +18,7 @@ export const injectResponsiveStorage = (app: App, config: ServerConfigs) => {
       },
       configure: Storage.getData("configure", nameSpace) ?? {
         hideTabs: config.HideTabs ?? false,
+        hideFooter: config.HideFooter ?? true,
         showLogo: config.ShowLogo ?? true,
         showModel: config.ShowModel ?? "smart",
         multiTagsCache: config.MultiTagsCache ?? false

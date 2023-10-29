@@ -181,7 +181,7 @@ html.dark {
 
 .vxe-table--render-default .vxe-body--row.row--hover,
 .vxe-pager {
-  background-color: #262727;
+  background-color: var(--el-border-color-lighter);
 }
 
 .vxe-input--inner,

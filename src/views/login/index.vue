@@ -10,17 +10,20 @@ import { useUserStoreHook } from "@/store/modules/user";
 import { initRouter, getTopMenu } from "@/router/utils";
 import { bg, RandomIllust } from "./utils/static";
 import { useRenderIcon } from "@/components/ReIcon/src/hooks";
-import { ref, reactive, toRaw, onMounted, onBeforeUnmount } from "vue";
+import { ref, reactive, toRaw, onMounted, onBeforeUnmount, watch } from "vue";
 import { useDataThemeChange } from "@/layout/hooks/useDataThemeChange";
 
 import Lock from "@iconify-icons/ri/lock-fill";
 import User from "@iconify-icons/ri/user-3-fill";
+import Info from "@iconify-icons/ri/information-line";
 
 defineOptions({
   name: "Login"
 });
+
 const router = useRouter();
 const loading = ref(false);
+const checked = ref(false);
 const ruleFormRef = ref<FormInstance>();
 
 const { initStorage } = useLayout();
@@ -55,9 +58,9 @@ const onLogin = async (formEl: FormInstance | undefined) => {
           }
         })
         .catch(error => {
-            message(error.resonse.data.detail, { type: "warning" });
-            loading.value = false;
-        });
+          message(error.resonse.data.detail, { type: "warning" });
+        })
+        .finally(() => (loading.value = false));
     } else {
       loading.value = false;
       return fields;
@@ -78,6 +81,10 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   window.document.removeEventListener("keypress", onkeypress);
+});
+
+watch(checked, bool => {
+  useUserStoreHook().SET_ISREMEMBERED(bool);
 });
 </script>
 
@@ -145,6 +152,21 @@ onBeforeUnmount(() => {
             </Motion>
 
             <Motion :delay="250">
+              <div class="w-full h-[20px] flex justify-between items-center">
+                <el-checkbox v-model="checked">
+                  <span class="flex">
+                    保持登录
+                    <el-tooltip
+                      effect="dark"
+                      placement="top"
+                      content="保持登录"
+                    >
+                      <IconifyIconOffline :icon="Info" class="ml-1" />
+                    </el-tooltip>
+                  </span>
+                </el-checkbox>
+                <el-button link type="primary"> 忘记密码 </el-button>
+              </div>
               <el-button
                 class="w-full mt-4"
                 size="default"

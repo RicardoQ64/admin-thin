@@ -126,6 +126,11 @@ export function useNav() {
     return remainingPaths.includes(path);
   }
 
+  /** 获取`logo` */
+  function getLogo() {
+    return new URL("/favicon.png", import.meta.url).href;
+  }
+
   return {
     route,
     title,
@@ -142,6 +147,7 @@ export function useNav() {
     menuSelect,
     handleResize,
     resolvePath,
+    getLogo,
     isCollapse,
     pureApp,
     user_no,

@@ -3,27 +3,27 @@ import { store } from "@/store";
 import { userType } from "./types";
 import { routerArrays } from "@/layout/types";
 import { router, resetRouter } from "@/router";
-import { storageSession } from "@pureadmin/utils";
+import { storageLocal } from "@pureadmin/utils";
 import { getLogin, refreshTokenApi } from "@/api/login";
 import { UserResult, RefreshTokenResult } from "@/api/login";
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags";
-import { type DataInfo, setToken, removeToken, sessionKey } from "@/utils/auth";
+import { type DataInfo, setToken, removeToken, userKey } from "@/utils/auth";
 
 export const useUserStore = defineStore({
   id: "pure-user",
   state: (): userType => ({
     // 工号
-    userNo:
-      storageSession().getItem<DataInfo<number>>(sessionKey)?.user_no ?? "",
+    userNo: storageLocal().getItem<DataInfo<number>>(userKey)?.user_no ?? "",
     // 用户名
-    username:
-      storageSession().getItem<DataInfo<number>>(sessionKey)?.username ?? "",
+    username: storageLocal().getItem<DataInfo<number>>(userKey)?.username ?? "",
     // 页面级别权限
-    roles: storageSession().getItem<DataInfo<number>>(sessionKey)?.roles ?? [],
+    roles: storageLocal().getItem<DataInfo<number>>(userKey)?.roles ?? [],
     // 机构号
-    orgNo: storageSession().getItem<DataInfo<number>>(sessionKey)?.org_no ?? "",
+    orgNo: storageLocal().getItem<DataInfo<number>>(userKey)?.org_no ?? "",
     // 电话
-    phone: storageSession().getItem<DataInfo<number>>(sessionKey)?.phone ?? ""
+    phone: storageLocal().getItem<DataInfo<number>>(userKey)?.phone ?? "",
+    // 是否勾选了7天内免登录
+    isRemembered: false
   }),
   actions: {
     /** 存储工号 */
@@ -45,6 +45,10 @@ export const useUserStore = defineStore({
     /** 存储电话 */
     SET_PHONE(phone: string) {
       this.phone = phone;
+    },
+    /** 存储是否勾选了7天内免登录 */
+    SET_ISREMEMBERED(bool: boolean) {
+      this.isRemembered = bool;
     },
     /** 登入 */
     async loginByUsername(data) {

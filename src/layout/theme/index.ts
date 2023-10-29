@@ -2,7 +2,7 @@
  * @description ⚠️：此文件仅供主题插件使用，请不要在此文件中导出别的工具函数（仅在页面加载前运行）
  */
 
-import { EpThemeColor } from "../../../public/serverConfig.json";
+import { EpThemeColor } from "../../../public/platform-config.json";
 
 type MultipleScopeVarsItem = {
   scopeName: string;
