@@ -5,10 +5,10 @@ import { useTags } from "../../hooks/useTag";
 import { routerArrays } from "@/layout/types";
 import { handleAliveRoute, getTopMenu } from "@/router/utils";
 import { useSettingStoreHook } from "@/store/modules/settings";
-import { useResizeObserver, useFullscreen } from "@vueuse/core";
 import { isEqual, isAllEmpty, debounce } from "@pureadmin/utils";
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags";
 import { ref, watch, unref, toRaw, nextTick, onBeforeUnmount } from "vue";
+import { useResizeObserver, useFullscreen, onClickOutside } from "@vueuse/core";
 
 import ExitFullscreen from "@iconify-icons/ri/fullscreen-exit-fill";
 import Fullscreen from "@iconify-icons/ri/fullscreen-fill";
@@ -45,6 +45,7 @@ const {
 const tabDom = ref();
 const containerDom = ref();
 const scrollbarDom = ref();
+const contextmenuRef = ref();
 const isShowArrow = ref(false);
 const topPath = getTopMenu()?.path;
 const { VITE_HIDE_HOME } = import.meta.env;
@@ -316,6 +317,7 @@ function handleCommand(command: any) {
 
 /** 触发右键中菜单的点击事件 */
 function selectTag(key, item) {
+  closeMenu();
   onClickDrop(key, item, currentSelect.value);
 }
 
@@ -450,6 +452,10 @@ function tagOnClick(item) {
   // showMenuModel(item?.path, item?.query);
 }
 
+onClickOutside(contextmenuRef, closeMenu, {
+  detectIframe: true
+});
+
 watch(route, () => {
   activeIndex.value = -1;
   dynamicTagView();
@@ -546,6 +552,7 @@ onBeforeUnmount(() => {
     <transition name="el-zoom-in-top">
       <ul
         v-show="visible"
+        ref="contextmenuRef"
         :key="Math.random()"
         :style="getContextMenuStyle"
         class="contextmenu"

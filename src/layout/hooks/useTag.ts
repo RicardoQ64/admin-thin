@@ -1,7 +1,6 @@
 import {
   ref,
   unref,
-  watch,
   computed,
   reactive,
   onMounted,
@@ -9,7 +8,6 @@ import {
   getCurrentInstance
 } from "vue";
 import { tagsViewsType } from "../types";
-import { useEventListener } from "@vueuse/core";
 import { useRoute, useRouter } from "vue-router";
 import { responsiveStorageNameSpace } from "@/config";
 import { useSettingStoreHook } from "@/store/modules/settings";
@@ -198,12 +196,6 @@ export function useTags() {
     }
   });
 
-  watch(
-    () => visible.value,
-    () => {
-      useEventListener(document, "click", closeMenu);
-    }
-  );
 
   return {
     route,

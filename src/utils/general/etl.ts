@@ -1,3 +1,41 @@
+/** 累加数字排除null值 */
+export const sumWithNull = arr => {
+  return arr.reduce((acc, val) => {
+    if (val) {
+      return acc + Number(val);
+    } else {
+      return acc + 0;
+    }
+  }, 0);
+};
+
+/** 转换数字为百分比 */
+export const formatPercent = num => {
+  return num.toLocaleString(undefined, {
+    style: "percent",
+    minimumFractionDigits: 2
+  });
+};
+
+/** 判断数组是否为空 */
+export function isEmptyArray(obj: any): boolean {
+  return (
+    obj === null ||
+    obj === undefined ||
+    (Array.isArray(obj) && obj.length === 0)
+  );
+}
+
+/** 对日期数据格式转换 => YYYY-MM-DD */
+export const dateToStr = date => {
+  const dateObject = new Date(date);
+  const year = dateObject.getFullYear();
+  const month = String(dateObject.getMonth() + 1).padStart(2, "0");
+  const day = String(dateObject.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
+/** 文件类型匹配 */
 export const matchType = fileName => {
   let suffix = "";
   try {
@@ -22,7 +60,7 @@ export const matchType = fileName => {
     return "excel";
   }
 
-  const wordlist = ["doc", "docx"];
+  const wordlist = ["docx"];
   if (wordlist.some(item => item == suffix)) {
     return "word";
   }
@@ -32,7 +70,7 @@ export const matchType = fileName => {
     return "pdf";
   }
 
-  const pptlist = ["ppt", "pptx"];
+  const pptlist = ["ppt"];
   if (pptlist.some(item => item == suffix)) {
     return "ppt";
   }

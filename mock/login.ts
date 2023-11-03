@@ -16,7 +16,7 @@ export default [
             roles: ["admin"],
             accessToken: "eyJhbGciOiJIUzUxMiJ9.admin",
             refreshToken: "eyJhbGciOiJIUzUxMiJ9.adminRefresh",
-            expires: "2023/10/30 00:00:00"
+            expires: "2030/10/30 00:00:00"
           }
         };
       } else {
@@ -29,7 +29,7 @@ export default [
             roles: ["common"],
             accessToken: "eyJhbGciOiJIUzUxMiJ9.common",
             refreshToken: "eyJhbGciOiJIUzUxMiJ9.commonRefresh",
-            expires: "2023/10/30 00:00:00"
+            expires: "2030/10/30 00:00:00"
           }
         };
       }

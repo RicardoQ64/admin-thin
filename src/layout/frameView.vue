@@ -50,7 +50,6 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .frame {
-  z-index: 998;
   position: absolute;
   inset: 0;
 
