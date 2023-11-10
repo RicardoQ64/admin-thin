@@ -45,9 +45,9 @@ import OfficeBuilding from "@iconify-icons/ep/office-building";
 import Lock from "@iconify-icons/ep/lock";
 import CreditCard from "@iconify-icons/ep/credit-card";
 import Guide from "@iconify-icons/ep/guide";
+import Paperclip from "@iconify-icons/ep/paperclip";
 import ChatDotSquare from "@iconify-icons/ep/chat-dot-square";
 import ElementPlus from "@iconify-icons/ep/element-plus";
-import Memo from "@iconify-icons/ep/memo";
 
 addIcon("check", Check);
 addIcon("home-filled", HomeFilled);
@@ -89,6 +89,6 @@ addIcon("office-building", OfficeBuilding);
 addIcon("lock", Lock);
 addIcon("credit-card", CreditCard);
 addIcon("guide", Guide);
+addIcon("paperclip", Paperclip);
 addIcon("chat-dot-square", ChatDotSquare);
 addIcon("element-plus", ElementPlus);
-addIcon("memo", Memo);

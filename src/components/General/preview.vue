@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { matchType } from "../../utils/general/fileFuc";
+import { matchType } from "../../utils/general/etl";
 import VueOfficePdf from "@vue-office/pdf";
 import VueOfficeDocx from "@vue-office/docx";
 import VueOfficeExcel from "@vue-office/excel";

@@ -35,6 +35,17 @@ export const dateToStr = date => {
   return `${year}-${month}-${day}`;
 };
 
+/** 对日期数据格式转换 => YYYYMMDDHHmm */
+export const datetimeToStrNoSign = date => {
+  const dateObject = new Date(date);
+  const year = dateObject.getFullYear();
+  const month = (dateObject.getMonth() + 1).toString().padStart(2, "0");
+  const day = dateObject.getDate().toString().padStart(2, "0");
+  const hour = dateObject.getHours().toString().padStart(2, "0");
+  const minute = dateObject.getMinutes().toString().padStart(2, "0");
+  return `${year}${month}${day}${hour}${minute}`;
+};
+
 /** 文件类型匹配 */
 export const matchType = fileName => {
   let suffix = "";

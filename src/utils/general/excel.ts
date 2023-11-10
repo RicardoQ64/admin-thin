@@ -126,6 +126,7 @@ export const expExcel = (
   writeFile(workBook, fileName + ".xlsx");
 };
 
+/** 用于excel导出， 制定栏目 */
 export const expExcelByCol = (
   list: any[],
   cols: any[],
@@ -280,3 +281,18 @@ export default class MergeCell {
     }
   }
 }
+
+export const expExcelbyBes = (result, fileName = "数据导出") => {
+  const link = document.createElement("a"); //创建a标签
+  const blob = new Blob([result], {
+    type: "application/vnd.ms-excel;charset=utf-8"
+  }); //设置文件流
+  link.style.display = "none";
+  // 设置连接
+  link.href = URL.createObjectURL(blob); //将文件流转化为blob地址
+  link.download = fileName + ".xlsx";
+  document.body.appendChild(link);
+  // 模拟点击事件
+  link.click(); //设置点击事件
+  document.body.removeChild(link);
+};
