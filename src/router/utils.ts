@@ -1,7 +1,7 @@
 import {
-  RouterHistory,
-  RouteRecordRaw,
-  RouteComponent,
+  type RouterHistory,
+  type RouteRecordRaw,
+  type RouteComponent,
   createWebHistory,
   createWebHashHistory
 } from "vue-router";
@@ -17,13 +17,12 @@ import {
   isIncludeAllChildren
 } from "@pureadmin/utils";
 import { getConfig } from "@/config";
-import { menuType } from "@/layout/types";
+import type { menuType } from "@/layout/types";
 import { buildHierarchyTree } from "@/utils/tree";
 import { userKey, type DataInfo } from "@/utils/auth";
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags";
 import { usePermissionStoreHook } from "@/store/modules/permission";
 const IFrame = () => import("@/layout/frameView.vue");
-// https://cn.vitejs.dev/guide/features.html#glob-import
 const modulesRoutes = import.meta.glob("/src/views/**/*.{vue,tsx}");
 
 // 动态路由
@@ -318,9 +317,9 @@ function addAsyncRoutes(arrRoutes: Array<RouteRecordRaw>) {
   return arrRoutes;
 }
 
-/** 获取路由历史模式 https://next.router.vuejs.org/zh/guide/essentials/history-mode.html */
+/** 获取路由历史模式 */
 function getHistoryMode(routerHistory): RouterHistory {
-  // len为1 代表只有历史模式 为2 代表历史模式中存在base参数 https://next.router.vuejs.org/zh/api/#%E5%8F%82%E6%95%B0-1
+  // len为1 代表只有历史模式 为2 代表历史模式中存在base参数
   const historyMode = routerHistory.split(",");
   const leftMode = historyMode[0];
   const rightMode = historyMode[1];

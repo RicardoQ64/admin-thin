@@ -50,6 +50,12 @@ const getSectionStyle = computed(() => {
 });
 
 const transitionMain = defineComponent({
+  props: {
+    route: {
+      type: undefined,
+      required: true
+    }
+  },
   render() {
     const transitionName =
       transitions.value(this.route)?.name || "fade-transform";
@@ -72,12 +78,6 @@ const transitionMain = defineComponent({
         default: () => [this.$slots.default()]
       }
     );
-  },
-  props: {
-    route: {
-      type: undefined,
-      required: true
-    }
   }
 });
 </script>

@@ -7,7 +7,6 @@ type ArgsType = {
   command: "cancel" | "sure" | "close";
 };
 
-/** https://element-plus.org/zh-CN/component/dialog.html#attributes */
 type DialogProps = {
   /** `Dialog` 的显示与隐藏 */
   visible?: boolean;
@@ -61,7 +60,6 @@ type BtnClickButton = {
   btn?: ButtonProps;
   index?: number;
 };
-/** https://element-plus.org/zh-CN/component/button.html#button-attributes */
 type ButtonProps = {
   /** 按钮文字 */
   label: string;
@@ -120,7 +118,6 @@ interface DialogOptions extends DialogProps {
   hideFooter?: boolean;
   /**
    * @description 自定义对话框标题的内容渲染器
-   * @see {@link https://element-plus.org/zh-CN/component/dialog.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%A4%B4%E9%83%A8}
    */
   headerRenderer?: ({
     close,

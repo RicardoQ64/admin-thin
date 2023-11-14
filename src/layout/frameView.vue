@@ -43,8 +43,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="frame" v-loading="loading" element-loading-text="加载中...">
-    <iframe :src="frameSrc" class="frame-iframe" ref="frameRef" />
+  <div v-loading="loading" element-loading-text="加载中..." class="frame">
+    <iframe ref="frameRef" :src="frameSrc" class="frame-iframe" />
   </div>
 </template>
 

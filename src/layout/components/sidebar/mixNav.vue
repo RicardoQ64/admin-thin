@@ -57,8 +57,8 @@ watch(
 <template>
   <div
     v-if="device !== 'mobile'"
-    class="horizontal-header"
     v-loading="usePermissionStoreHook().wholeMenus.length === 0"
+    class="horizontal-header"
   >
     <topCollapse
       v-if="layout === 'mix'"
@@ -67,8 +67,8 @@ watch(
       @toggleClick="toggleSideBar"
     />
     <el-menu
-      router
       ref="menuRef"
+      router
       mode="horizontal"
       class="horizontal-header-menu"
       :default-active="defaultActive"

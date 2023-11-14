@@ -10,7 +10,7 @@ import {
   ref,
   unref,
   computed,
-  PropType,
+  type PropType,
   onMounted,
   onUnmounted,
   defineComponent
@@ -162,7 +162,6 @@ export default defineComponent({
       const canvas = inCircled.value
         ? getRoundedCanvas()
         : cropper.value.getCroppedCanvas();
-      // https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/toBlob
       canvas.toBlob(blob => {
         if (!blob) return;
         const fileReader: FileReader = new FileReader();

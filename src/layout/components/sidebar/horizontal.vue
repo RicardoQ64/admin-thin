@@ -41,8 +41,8 @@ nextTick(() => {
       <span>{{ title }}</span>
     </div>
     <el-menu
-      router
       ref="menuRef"
+      router
       mode="horizontal"
       class="horizontal-header-menu"
       :default-active="defaultActive"

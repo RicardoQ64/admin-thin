@@ -4,10 +4,10 @@ import {
   computed,
   reactive,
   onMounted,
-  CSSProperties,
+  type CSSProperties,
   getCurrentInstance
 } from "vue";
-import { tagsViewsType } from "../types";
+import type { tagsViewsType } from "../types";
 import { useRoute, useRouter } from "vue-router";
 import { responsiveStorageNameSpace } from "@/config";
 import { useSettingStoreHook } from "@/store/modules/settings";
@@ -195,7 +195,6 @@ export function useTags() {
       );
     }
   });
-
 
   return {
     route,
