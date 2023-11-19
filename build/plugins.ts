@@ -1,6 +1,7 @@
 import vue from "@vitejs/plugin-vue";
 import { viteBuildInfo } from "./info";
 import svgLoader from "vite-svg-loader";
+import type { PluginOption } from "vite";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import { configCompressPlugin } from "./compress";
 // import ElementPlus from "unplugin-element-plus/vite";
@@ -11,9 +12,8 @@ import { genScssMultipleScopeVars } from "../src/layout/theme";
 import { vitePluginFakeServer } from "vite-plugin-fake-server";
 
 export function getPluginsList(
-  command: string,
   VITE_COMPRESSION: ViteCompression
-) {
+): PluginOption[] {
   const lifecycle = process.env.npm_lifecycle_event;
   return [
     vue(),
@@ -43,6 +43,6 @@ export function getPluginsList(
     // 打包分析
     lifecycle === "report"
       ? visualizer({ open: true, brotliSize: true, filename: "report.html" })
-      : null
+      : (null as any)
   ];
 }

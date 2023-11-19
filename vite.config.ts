@@ -4,7 +4,7 @@ import pkg from "./package.json";
 import { warpperEnv } from "./build";
 import { getPluginsList } from "./build/plugins";
 import { include, exclude } from "./build/optimize";
-import { UserConfigExport, ConfigEnv, loadEnv } from "vite";
+import { type UserConfigExport, type ConfigEnv, loadEnv } from "vite";
 
 /** 当前执行node命令时文件夹的地址（工作目录） */
 const root: string = process.cwd();
@@ -26,7 +26,7 @@ const __APP_INFO__ = {
   lastBuildTime: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss")
 };
 
-export default ({ command, mode }: ConfigEnv): UserConfigExport => {
+export default ({ mode }: ConfigEnv): UserConfigExport => {
   const { VITE_PORT, VITE_COMPRESSION, VITE_PUBLIC_PATH } = warpperEnv(
     loadEnv(mode, root)
   );
@@ -45,7 +45,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       host: "0.0.0.0",
       proxy: {}
     },
-    plugins: getPluginsList(command, VITE_COMPRESSION),
+    plugins: getPluginsList(VITE_COMPRESSION),
     optimizeDeps: {
       include,
       exclude
