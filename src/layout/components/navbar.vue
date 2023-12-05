@@ -14,7 +14,7 @@ const {
   onPanel,
   pureApp,
   username,
-  org_no,
+  org,
   avatarsStyle,
   toggleSideBar
 } = useNav();
@@ -47,8 +47,8 @@ const {
           <img src="/avator.jpeg" :style="avatarsStyle" />
           <p v-if="username" class="dark:text-white">
             {{ username }}
-            <el-divider v-if="org_no" direction="vertical" />
-            {{ org_no }}
+            <el-divider v-if="org" direction="vertical" />
+            {{ org }}
           </p>
         </span>
         <template #dropdown>

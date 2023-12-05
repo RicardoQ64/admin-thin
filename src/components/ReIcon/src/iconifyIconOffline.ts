@@ -12,6 +12,7 @@ import Document from "@iconify-icons/ep/document";
 import SuccessFilled from "@iconify-icons/ep/success-filled";
 import CircleCloseFilled from "@iconify-icons/ep/circle-close-filled";
 import Menu from "@iconify-icons/ep/menu";
+import Mouse from "@iconify-icons/ep/mouse";
 addIcon("coin", Coin);
 addIcon("delete", Delete);
 addIcon("link", Link);
@@ -22,6 +23,7 @@ addIcon("document", Document);
 addIcon("success-filled", SuccessFilled);
 addIcon("circle-close-filled", CircleCloseFilled);
 addIcon("menu", Menu);
+addIcon("mouse", Mouse);
 
 // radix-icons
 import dashboardIcon from "@iconify-icons/radix-icons/dashboard";
@@ -117,6 +119,7 @@ import groupLine from "@iconify-icons/ri/group-line";
 import upload2Fill from "@iconify-icons/ri/upload-2-fill";
 import fileMarkLine from "@iconify-icons/ri/file-mark-line";
 import swapLine from "@iconify-icons/ri/swap-line";
+import dashbordLine from "@iconify-icons/ri/dashboard-line";
 addIcon("arrow-right-s-line", ArrowRightSLine);
 addIcon("arrow-left-s-line", ArrowLeftSLine);
 addIcon("logout-circle-r-line", LogoutCircleRLine);
@@ -154,6 +157,7 @@ addIcon("group-line", groupLine);
 addIcon("upload-2-fill", upload2Fill);
 addIcon("file-mark-line", fileMarkLine);
 addIcon("swap-line", swapLine);
+addIcon("dashboard-line", dashbordLine);
 
 // Material Symbols
 import wifiRounded from "@iconify-icons/material-symbols/wifi-rounded";

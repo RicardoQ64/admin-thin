@@ -20,6 +20,8 @@ export const useUserStore = defineStore({
     roles: storageLocal().getItem<DataInfo<number>>(userKey)?.roles ?? [],
     // 机构号
     orgNo: storageLocal().getItem<DataInfo<number>>(userKey)?.org_no ?? "",
+    // 机构名称
+    org: storageLocal().getItem<DataInfo<number>>(userKey)?.org ?? "",
     // 电话
     phone: storageLocal().getItem<DataInfo<number>>(userKey)?.phone ?? "",
     // 是否勾选了7天内免登录
@@ -41,6 +43,10 @@ export const useUserStore = defineStore({
     /** 存储机构号 */
     SET_ORGNO(orgNo: string) {
       this.orgNo = orgNo;
+    },
+    /** 存储机构名称 */
+    SET_ORG(org: string) {
+      this.org = org;
     },
     /** 存储电话 */
     SET_PHONE(phone: string) {
@@ -71,6 +77,7 @@ export const useUserStore = defineStore({
       this.username = "";
       this.roles = [];
       this.org_no = "";
+      this.org = "";
       this.phone = "";
       removeToken();
       useMultiTagsStoreHook().handleTags("equal", [...routerArrays]);
@@ -93,6 +100,7 @@ export const useUserStore = defineStore({
             this.username = "";
             this.roles = [];
             this.org_no = "";
+            this.org = "";
             this.phone = "";
             removeToken();
             useMultiTagsStoreHook().handleTags("equal", [...routerArrays]);

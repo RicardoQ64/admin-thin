@@ -51,6 +51,11 @@ export function useNav() {
     return useUserStoreHook()?.orgNo;
   });
 
+  /** 机构名称 */
+  const org = computed(() => {
+    return useUserStoreHook()?.org;
+  });
+
   /** 手机号 */
   const phone = computed(() => {
     return useUserStoreHook()?.phone;
@@ -154,6 +159,7 @@ export function useNav() {
     username,
     roles,
     org_no,
+    org,
     phone,
     avatarsStyle,
     tooltipEffect

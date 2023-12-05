@@ -17,6 +17,8 @@ export interface DataInfo<T> {
   roles?: Array<string>;
   /** 当前登陆用户的机构号 */
   org_no?: string;
+  /** 当前登陆用户的机构名称 */
+  org?: string;
   /** 当前登陆用户的手机号 */
   phone?: string;
 }
@@ -72,12 +74,14 @@ export function setToken(data: DataInfo<Date>) {
     username: string,
     roles: Array<string>,
     org_no: string,
+    org: string,
     phone: string
   ) {
     useUserStoreHook().SET_USERNO(user_no);
     useUserStoreHook().SET_USERNAME(username);
     useUserStoreHook().SET_ROLES(roles);
     useUserStoreHook().SET_ORGNO(org_no);
+    useUserStoreHook().SET_ORG(org);
     useUserStoreHook().SET_PHONE(phone);
     storageLocal().setItem(userKey, {
       refreshToken,
@@ -86,17 +90,19 @@ export function setToken(data: DataInfo<Date>) {
       username,
       roles,
       org_no,
+      org,
       phone
     });
   }
 
-  if (data.user_no && data.username) {
-    const { user_no, username, roles, org_no, phone } = data;
+  if (data.user_no && data.username && data.org_no && data.org) {
+    const { user_no, username, roles, org_no, org, phone } = data;
     setUserKey(
       user_no,
       username,
       roles ? roles : [],
-      org_no ? org_no : "",
+      org_no,
+      org,
       phone ? phone : ""
     );
   } else {
@@ -108,9 +114,10 @@ export function setToken(data: DataInfo<Date>) {
       storageLocal().getItem<DataInfo<number>>(userKey)?.roles ?? [];
     const org_no =
       storageLocal().getItem<DataInfo<number>>(userKey)?.org_no ?? "";
+    const org = storageLocal().getItem<DataInfo<number>>(userKey)?.org ?? "";
     const phone =
       storageLocal().getItem<DataInfo<number>>(userKey)?.phone ?? "";
-    setUserKey(user_no, username, roles, org_no, phone);
+    setUserKey(user_no, username, roles, org_no, org, phone);
   }
 }
 
