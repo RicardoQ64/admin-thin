@@ -12,6 +12,7 @@ const include = [
   "pinia",
   "typeit",
   "swiper",
+  "qrcode",
   "js-cookie",
   "vue-tippy",
   "cropperjs",
@@ -39,7 +40,6 @@ const exclude = [
   "@iconify-icons/ep",
   "@iconify-icons/ri",
   "@iconify-icons/radix-icons",
-  "@iconify-icons/material-symbols",
   "@pureadmin/theme/dist/browser-utils"
 ];
 
