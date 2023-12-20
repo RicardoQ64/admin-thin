@@ -122,7 +122,8 @@ function onReset() {
   useAppStoreHook().setLayout(Layout);
   setEpThemeColor(EpThemeColor);
   useMultiTagsStoreHook().multiTagsCacheChange(MultiTagsCache);
-  router.push("/login");
+  // router.push("/login");
+  window.location.href = "/";
   useMultiTagsStoreHook().handleTags("equal", [...routerArrays]);
   resetRouter();
 }

@@ -40,6 +40,7 @@ export type userType = {
   username?: string;
   roles?: Array<string>;
   orgNo?: string;
+  org?: string;
   phone?: string;
   isRemembered?: boolean;
 };

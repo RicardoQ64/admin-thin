@@ -82,7 +82,8 @@ export const useUserStore = defineStore({
       removeToken();
       useMultiTagsStoreHook().handleTags("equal", [...routerArrays]);
       resetRouter();
-      router.push("/login");
+      // router.push("/login");
+      window.location.href = "/";
     },
     /** 刷新`token` */
     async handRefreshToken(data) {
@@ -105,7 +106,8 @@ export const useUserStore = defineStore({
             removeToken();
             useMultiTagsStoreHook().handleTags("equal", [...routerArrays]);
             resetRouter();
-            router.push("/login");
+            // router.push("/login");
+            window.location.href = "/";
           });
       });
     }
