@@ -18,7 +18,7 @@ const themeColors = {
     vxeColor,
     subMenuActiveText: "#fff",
     menuBg: "#001529",
-    menuHover: "#1677ff",
+    menuHover: "rgb(64 145 247 / 15%)",
     subMenuBg: "#000c17",
     subMenuActiveBg: "#1677ff",
     menuText: "rgb(254 254 254 / 75%)",

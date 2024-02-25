@@ -38,7 +38,7 @@ const {
 
     <div v-if="layout === 'vertical'" class="vertical-header-right">
       <!-- 菜单搜索 -->
-      <Search />
+      <Search id="header-search" />
       <!-- 通知 -->
       <!-- <Notice id="header-notice" /> -->
       <!-- 退出登录 -->
@@ -93,7 +93,7 @@ const {
     justify-content: flex-end;
     min-width: 280px;
     height: 48px;
-    color: #000000d9;
+    color: var(--el-text-color-primary);
 
     .el-dropdown-link {
       display: flex;

@@ -44,6 +44,7 @@ nextTick(() => {
       ref="menuRef"
       router
       mode="horizontal"
+      popper-class="pure-scrollbar"
       class="horizontal-header-menu"
       :default-active="defaultActive"
     >
@@ -56,7 +57,7 @@ nextTick(() => {
     </el-menu>
     <div class="horizontal-header-right">
       <!-- 菜单搜索 -->
-      <Search />
+      <Search id="header-search" />
       <!-- 通知 -->
       <!-- <Notice id="header-notice" /> -->
       <!-- 退出登录 -->

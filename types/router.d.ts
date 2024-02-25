@@ -1,6 +1,6 @@
 // 全局路由类型声明
-
-import { type RouteComponent, type RouteLocationNormalized } from "vue-router";
+import type { RouteComponent, RouteLocationNormalized } from "vue-router";
+import type { FunctionalComponent } from "vue";
 
 declare global {
   interface ToRouteType extends RouteLocationNormalized {
@@ -35,7 +35,6 @@ declare global {
     transition?: {
       /**
        * @description 当前路由动画效果
-       * @see {@link https://next.router.vuejs.org/guide/advanced/transitions.html#transitions}
        * @see animate.css {@link https://animate.style}
        */
       name?: string;

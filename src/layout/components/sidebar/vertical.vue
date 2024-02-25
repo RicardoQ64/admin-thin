@@ -17,8 +17,14 @@ const showLogo = ref(
   )?.showLogo ?? true
 );
 
-const { device, pureApp, isCollapse, menuSelect } = useNav();
-
+const {
+  device,
+  pureApp,
+  isCollapse,
+  tooltipEffect,
+  menuSelect,
+  toggleSideBar
+} = useNav();
 const subMenuData = ref([]);
 
 const menuData = computed(() => {
@@ -90,10 +96,12 @@ onBeforeUnmount(() => {
         router
         unique-opened
         mode="vertical"
+        popper-class="pure-scrollbar"
         class="outer-most select-none"
         :collapse="isCollapse"
-        :default-active="defaultActive"
         :collapse-transition="false"
+        :popper-effect="tooltipEffect"
+        :default-active="defaultActive"
       >
         <sidebar-item
           v-for="routes in menuData"

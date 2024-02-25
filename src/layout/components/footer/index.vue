@@ -4,12 +4,7 @@ const TITLE = getConfig("Title");
 </script>
 
 <template>
-  <footer class="layout-footer">
-    © 2023-PRESENT
-    <span>
-      {{ TITLE }}
-    </span>
-  </footer>
+  <footer class="layout-footer">© 2023-PRESENT || {{ TITLE }}</footer>
 </template>
 
 <style lang="scss" scoped>

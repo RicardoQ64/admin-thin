@@ -13,6 +13,7 @@ import SuccessFilled from "@iconify-icons/ep/success-filled";
 import CircleCloseFilled from "@iconify-icons/ep/circle-close-filled";
 import Menu from "@iconify-icons/ep/menu";
 import Mouse from "@iconify-icons/ep/mouse";
+import WindowPower from "@iconify-icons/ep/wind-power";
 addIcon("coin", Coin);
 addIcon("delete", Delete);
 addIcon("link", Link);
@@ -24,6 +25,7 @@ addIcon("success-filled", SuccessFilled);
 addIcon("circle-close-filled", CircleCloseFilled);
 addIcon("menu", Menu);
 addIcon("mouse", Mouse);
+addIcon("wind-power", WindowPower);
 
 // radix-icons
 import dashboardIcon from "@iconify-icons/radix-icons/dashboard";
@@ -94,6 +96,7 @@ import Lock from "@iconify-icons/ri/lock-fill";
 import MenuUnfold from "@iconify-icons/ri/menu-unfold-fill";
 import MenuFold from "@iconify-icons/ri/menu-fold-fill";
 import Setting from "@iconify-icons/ri/settings-3-line";
+import Search from "@iconify-icons/ri/search-line";
 import ArrowDown from "@iconify-icons/ri/arrow-down-s-line";
 import EqualFill from "@iconify-icons/ri/equal-fill";
 import CloseFill from "@iconify-icons/ri/close-fill";
@@ -132,6 +135,7 @@ addIcon("lock", Lock);
 addIcon("menu-unfold", MenuUnfold);
 addIcon("menu-fold", MenuFold);
 addIcon("setting", Setting);
+addIcon("search", Search);
 addIcon("arrow-down", ArrowDown);
 addIcon("equal-fill", EqualFill);
 addIcon("close-fill", CloseFill);
@@ -159,9 +163,6 @@ addIcon("file-mark-line", fileMarkLine);
 addIcon("swap-line", swapLine);
 addIcon("dashboard-line", dashbordLine);
 
-// Material Symbols
-import wifiRounded from "@iconify-icons/material-symbols/wifi-rounded";
-addIcon("wifi-rounded", wifiRounded);
 
 // Iconify Icon在Vue里本地使用（用于内网环境）https://docs.iconify.design/icon-components/vue/offline.html
 export default defineComponent({

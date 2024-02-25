@@ -29,8 +29,8 @@ const ruleFormRef = ref<FormInstance>();
 const { initStorage } = useLayout();
 initStorage();
 
-const { dataThemeChange } = useDataThemeChange();
-dataThemeChange();
+const { dataTheme, overallStyle, dataThemeChange } = useDataThemeChange();
+dataThemeChange(overallStyle.value);
 const { title } = useNav();
 
 const ruleForm = reactive({
@@ -51,7 +51,7 @@ const onLogin = async (formEl: FormInstance | undefined) => {
         .then(res => {
           if (res.success) {
             // 获取后端路由
-            initRouter(ruleForm.user_no).then(() => {
+            return initRouter(ruleForm.user_no).then(() => {
               router.push(getTopMenu(true).path);
               message("登录成功", { type: "success" });
             });

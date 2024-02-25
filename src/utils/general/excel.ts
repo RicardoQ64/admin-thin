@@ -256,16 +256,22 @@ export default class MergeCell {
     if (!this.headerValue[row]) {
       this.headerValue[row] = new Array(col).fill("");
     }
-    for (let i = 0, len = headers.length; i < len; i++) {
-      const cell = headers[i];
-      this.headerValue[row].push(cell.label);
-      if (cell.children?.length) {
-        const len = this.getCellsSize(cell.children)[1];
-        const emptyNameList = new Array(len).fill("");
-        this.headerValue[row].push(...emptyNameList);
-        this.getHeadersValue(cell.children, row + 1, col + i);
+    headers.forEach(header => {
+      if (row === this.headerValue.length) {
+        this.headerValue.push([]); // 确保有足够的行来添加新值
       }
-    }
+      if (!header.children) {
+        // 对于没有子项的表头，直接赋值
+        this.headerValue[row][col] = header.label;
+        col++;
+      } else {
+        this.headerValue[row][col] = header.label;
+        const size = this.getCellsSize(header.children);
+        // 递归处理子项
+        this.getHeadersValue(header.children, row + 1, col);
+        col += size[1] + 1; // 更新列索引，跳过当前处理的子项范围
+      }
+    });
   }
 
   /** 正文prop对应 */

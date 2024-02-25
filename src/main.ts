@@ -1,11 +1,11 @@
 import App from "./App.vue";
 import router from "./router";
 import { setupStore } from "@/store";
-import ElementPlus from "element-plus";
 import { getPlatformConfig } from "./config";
 import { createApp, type Directive } from "vue";
 import { MotionPlugin } from "@vueuse/motion";
 import { useEcharts } from "@/plugins/echarts";
+import { useElementPlus } from "@/plugins/element-plus/elementPlus";
 import { injectResponsiveStorage } from "@/utils/responsive";
 
 import Table from "@pureadmin/table";
@@ -31,7 +31,7 @@ Object.keys(directives).forEach(key => {
   app.directive(key, (directives as { [key: string]: Directive })[key]);
 });
 
-// 全局注册`@iconify/vue`图标库
+// 全局注册@iconify/vue图标库
 import {
   IconifyIconOffline,
   IconifyIconOnline,
@@ -45,6 +45,12 @@ app.component("FontIcon", FontIcon);
 import { Auth } from "@/components/ReAuth";
 app.component("Auth", Auth);
 
+// 全局注册vue-tippy
+import "tippy.js/dist/tippy.css";
+import "tippy.js/themes/light.css";
+import VueTippy from "vue-tippy";
+app.use(VueTippy);
+
 getPlatformConfig(app).then(async config => {
   setupStore(app);
   app.use(router);
@@ -52,7 +58,7 @@ getPlatformConfig(app).then(async config => {
   injectResponsiveStorage(app, config);
   app
     .use(MotionPlugin)
-    .use(ElementPlus)
+    .use(useElementPlus)
     .use(useEcharts)
     .use(Table)
     //.use(useTable)

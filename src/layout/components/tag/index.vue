@@ -3,12 +3,17 @@ import { emitter } from "@/utils/mitt";
 import { RouteConfigs } from "../../types";
 import { useTags } from "../../hooks/useTag";
 import { routerArrays } from "@/layout/types";
+import { useFullscreen, onClickOutside } from "@vueuse/core";
 import { handleAliveRoute, getTopMenu } from "@/router/utils";
 import { useSettingStoreHook } from "@/store/modules/settings";
-import { isEqual, isAllEmpty, debounce } from "@pureadmin/utils";
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags";
 import { ref, watch, unref, toRaw, nextTick, onBeforeUnmount } from "vue";
-import { useResizeObserver, useFullscreen, onClickOutside } from "@vueuse/core";
+import {
+  delay,
+  isEqual,
+  isAllEmpty,
+  useResizeObserver
+} from "@pureadmin/utils";
 
 import ExitFullscreen from "@iconify-icons/ri/fullscreen-exit-fill";
 import Fullscreen from "@iconify-icons/ri/fullscreen-fill";
@@ -31,6 +36,7 @@ const {
   pureSetting,
   activeIndex,
   getTabStyle,
+  isScrolling,
   iconIsActive,
   linkIsActive,
   currentSelect,
@@ -129,6 +135,33 @@ const handleScroll = (offset: number): void => {
       translateX.value = 0;
     }
   }
+  isScrolling.value = false;
+};
+
+const handleWheel = (event: WheelEvent): void => {
+  isScrolling.value = true;
+  const scrollIntensity = Math.abs(event.deltaX) + Math.abs(event.deltaY);
+  let offset = 0;
+  if (event.deltaX < 0) {
+    offset = scrollIntensity > 0 ? scrollIntensity : 100;
+  } else {
+    offset = scrollIntensity > 0 ? -scrollIntensity : -100;
+  }
+  smoothScroll(offset);
+};
+
+const smoothScroll = (offset: number): void => {
+  const scrollAmount = 20; // 每帧滚动的距离
+  let remaining = Math.abs(offset);
+  const scrollStep = () => {
+    const scrollOffset = Math.sign(offset) * Math.min(scrollAmount, remaining);
+    handleScroll(scrollOffset);
+    remaining -= Math.abs(scrollOffset);
+    if (remaining > 0) {
+      requestAnimationFrame(scrollStep);
+    }
+  };
+  requestAnimationFrame(scrollStep);
 };
 
 function dynamicRouteTag(value: string): void {
@@ -139,7 +172,7 @@ function dynamicRouteTag(value: string): void {
   function concatPath(arr: object[], value: string) {
     if (!hasValue) {
       arr.forEach((arrItem: any) => {
-        if (arrItem.path === value || arrItem.path === value) {
+        if (arrItem.path === value) {
           useMultiTagsStoreHook().handleTags("push", {
             path: value,
             meta: arrItem.meta,
@@ -411,7 +444,7 @@ function openMenu(tag, e) {
   }
 
   currentSelect.value = tag;
-  const menuMinWidth = 105;
+  const menuMinWidth = 140;
   const offsetLeft = unref(containerDom).getBoundingClientRect().left;
   const offsetWidth = unref(containerDom).offsetWidth;
   const maxLeft = offsetWidth - menuMinWidth;
@@ -491,10 +524,8 @@ onMounted(() => {
     });
   });
 
-  useResizeObserver(
-    scrollbarDom,
-    debounce(() => dynamicTagView())
-  );
+  useResizeObserver(scrollbarDom, dynamicTagView);
+  delay().then(() => dynamicTagView());
 });
 
 onBeforeUnmount(() => {
@@ -510,7 +541,11 @@ onBeforeUnmount(() => {
     <span v-show="isShowArrow" class="arrow-left">
       <IconifyIconOffline :icon="ArrowLeftSLine" @click="handleScroll(200)" />
     </span>
-    <div ref="scrollbarDom" class="scroll-container">
+    <div
+      ref="scrollbarDom"
+      class="scroll-container"
+      @wheel.prevent="handleWheel"
+    >
       <div ref="tabDom" class="tab select-none" :style="getTabStyle">
         <div
           v-for="(item, index) in multiTags"
@@ -537,7 +572,7 @@ onBeforeUnmount(() => {
           >
             <IconifyIconOffline :icon="CloseBold" />
           </span>
-          <div
+          <span
             v-if="showModel !== 'card'"
             :ref="'schedule' + index"
             :class="[scheduleIsActive(item)]"

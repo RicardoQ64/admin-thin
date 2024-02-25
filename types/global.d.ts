@@ -1,11 +1,4 @@
-import type {
-  VNode,
-  FunctionalComponent,
-  PropType as VuePropType,
-  ComponentPublicInstance
-} from "vue";
 import type { ECharts } from "echarts";
-import type { IconifyIcon } from "@iconify/vue";
 import type { TableColumns } from "@pureadmin/table";
 
 /**
@@ -19,6 +12,9 @@ declare global {
     pkg: {
       name: string;
       version: string;
+      engines: {
+        node: string;
+      };
       dependencies: Recordable<string>;
       devDependencies: Recordable<string>;
     };
@@ -68,7 +64,7 @@ declare global {
   /**
    *  继承 `@pureadmin/table` 的 `TableColumns` ，方便全局直接调用
    */
-  interface TableColumnList extends Array<TableColumns> {}
+  interface TableColumnList extends Array<TableColumns> { }
 
   /**
    * 对应 `public/platform-config.json` 文件的类型声明
@@ -84,6 +80,7 @@ declare global {
     Layout?: string;
     Theme?: string;
     DarkMode?: boolean;
+    OverallStyle?: string;
     Grey?: boolean;
     Weak?: boolean;
     HideTabs?: boolean;
@@ -126,6 +123,8 @@ declare global {
     hideFooter?: boolean;
     sidebarStatus?: boolean;
     epThemeColor?: string;
+    themeColor?: string;
+    overallStyle?: string;
     showLogo?: boolean;
     showModel?: string;
     mapConfigure?: {
@@ -152,6 +151,8 @@ declare global {
       darkMode?: boolean;
       sidebarStatus?: boolean;
       epThemeColor?: string;
+      themeColor?: string;
+      overallStyle?: string;
     };
     configure: {
       grey?: boolean;
