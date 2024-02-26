@@ -631,21 +631,16 @@ onBeforeUnmount(() => {
           </template>
         </el-dropdown>
       </li>
-      <li>
-        <span
-          :title="'刷新'"
-          class="el-icon-refresh-right rotate"
-          @click="onFresh"
-        >
+      <li @click="onFresh">
+        <span :title="'刷新'" class="el-icon-refresh-right rotate">
           <IconifyIconOffline icon="refresh-right" />
         </span>
       </li>
-      <li>
+      <li @click="onFullScreen">
         <span
           v-if="pureSetting.hiddenSideBar"
           :title="'内容区全屏'"
           class="el-icon-refresh-right rotate"
-          @click="onFullScreen"
         >
           <IconifyIconOffline icon="exit-fullscreen" />
         </span>
@@ -653,7 +648,6 @@ onBeforeUnmount(() => {
           v-else-if="!pureSetting.hiddenSideBar"
           :title="'退出全屏'"
           class="el-icon-refresh-right rotate"
-          @click="onFullScreen"
         >
           <IconifyIconOffline icon="fullscreen" />
         </span>
