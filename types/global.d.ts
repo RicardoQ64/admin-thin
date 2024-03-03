@@ -93,6 +93,7 @@ declare global {
     CachingAsyncRoutes?: boolean;
     TooltipEffect?: Effect;
     ResponsiveStorageNameSpace?: string;
+    MenuSearchHistory?: number;
     MapConfigure?: {
       amapKey?: string;
       options: {
@@ -127,6 +128,7 @@ declare global {
     overallStyle?: string;
     showLogo?: boolean;
     showModel?: string;
+    menuSearchHistory?: number;
     mapConfigure?: {
       amapKey?: string;
       options: {

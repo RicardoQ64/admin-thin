@@ -4,7 +4,11 @@ const TITLE = getConfig("Title");
 </script>
 
 <template>
-  <footer class="layout-footer">© 2023-PRESENT || {{ TITLE }}</footer>
+  <footer
+    class="layout-footer text-[rgba(0,0,0,0.6)] dark:text-[rgba(220,220,242,0.8)]"
+  >
+    Copyright © 2023-present&nbsp;{{ TITLE }}
+  </footer>
 </template>
 
 <style lang="scss" scoped>
@@ -14,6 +18,6 @@ const TITLE = getConfig("Title");
   justify-content: center;
   font-size: 16px;
   padding: 0 0 8px;
-  color: #c0c4cc;
+  font-size: 14px;
 }
 </style>

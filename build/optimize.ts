@@ -25,6 +25,7 @@ const include = [
   "@vueuse/core",
   "@pureadmin/utils",
   "responsive-storage",
+  "plus-pro-components",
   "el-table-infinite-scroll",
   "@wangeditor/editor-for-vue",
   "vuedraggable/src/vuedraggable",

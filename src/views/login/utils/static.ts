@@ -8,11 +8,11 @@ import illustration3 from "@/assets/login/illustration3.svg?component";
 import illustration4 from "@/assets/login/illustration4.svg?component";
 import illustration5 from "@/assets/login/illustration5.svg?component";
 import illustration6 from "@/assets/login/illustration6.svg?component";
-import illustration7 from "@/assets/login/illustration7.svg?component";
-import illustration8 from "@/assets/login/illustration8.svg?component";
 
 const RandomIllust = computed(() => {
-  switch (Math.floor(Math.random() * 9)) {
+  console.log(Math.random());
+  console.log(Math.floor(Math.random() * 7));
+  switch (Math.floor(Math.random() * 7)) {
     case 0:
       return illustration0;
     case 1:
@@ -27,10 +27,6 @@ const RandomIllust = computed(() => {
       return illustration5;
     case 6:
       return illustration6;
-    case 7:
-      return illustration7;
-    case 8:
-      return illustration8;
     default:
       return illustration0;
   }

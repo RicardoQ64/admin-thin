@@ -57,6 +57,15 @@ html.dark {
     .right-button li {
       border-right: 1px solid #2d2d2d;
     }
+        
+    .scroll-item {
+      .el-icon-close {
+        &:hover {
+          color: rgb(255 255 255 / 85%) !important;
+          background-color: rgb(255 255 255 / 12%);
+        }
+      }
+    }
   }
 
   /* 项目配置面板 */

@@ -19,9 +19,9 @@ import ExitFullscreen from "@iconify-icons/ri/fullscreen-exit-fill";
 import Fullscreen from "@iconify-icons/ri/fullscreen-fill";
 import ArrowRightSLine from "@iconify-icons/ri/arrow-right-s-line";
 import ArrowLeftSLine from "@iconify-icons/ri/arrow-left-s-line";
-import CloseBold from "@iconify-icons/ep/close-bold";
 
 const {
+  Close,
   route,
   router,
   visible,
@@ -151,7 +151,8 @@ const handleWheel = (event: WheelEvent): void => {
 };
 
 const smoothScroll = (offset: number): void => {
-  const scrollAmount = 20; // 每帧滚动的距离
+  // 每帧滚动的距离
+  const scrollAmount = 20;
   let remaining = Math.abs(offset);
   const scrollStep = () => {
     const scrollOffset = Math.sign(offset) * Math.min(scrollAmount, remaining);
@@ -570,7 +571,7 @@ onBeforeUnmount(() => {
             class="el-icon-close"
             @click.stop="deleteMenu(item)"
           >
-            <IconifyIconOffline :icon="CloseBold" />
+            <IconifyIconOffline :icon="Close" />
           </span>
           <span
             v-if="showModel !== 'card'"
