@@ -53,7 +53,7 @@ const getSubMenuIconStyle = computed((): CSSProperties => {
     margin:
       layout.value === "horizontal"
         ? "0 5px 0 0"
-        : isCollapse.value
+        : isCollapse.value && props.item.pid === null
           ? "0 auto"
           : "0 5px 0 0"
   };

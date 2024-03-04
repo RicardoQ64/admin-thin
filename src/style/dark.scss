@@ -81,7 +81,7 @@ html.dark {
 
   /* element-plus */
   .el-table__cell {
-    background: var(--el-bg-color);
+    background: var(--el-bg-color) !important;
   }
 
   .el-card {

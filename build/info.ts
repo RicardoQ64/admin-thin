@@ -47,7 +47,7 @@ export function viteBuildInfo(): Plugin {
                     .duration(endTime.diff(startTime))
                     .format("mm分ss秒")}，打包后的大小为${size}）`
                 ),
-                BoxenOptions
+                boxenOptions
               )
             );
           }
