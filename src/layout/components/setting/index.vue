@@ -12,7 +12,7 @@ import {
 import panel from "../panel/index.vue";
 import { emitter } from "@/utils/mitt";
 import { useAppStoreHook } from "@/store/modules/app";
-import { useDark, debounce, useGlobal } from "@pureadmin/utils";
+import { useDark, useGlobal, debounce } from "@pureadmin/utils";
 import { toggleTheme } from "@pureadmin/theme/dist/browser-utils";
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags";
 import Segmented, { type OptionsType } from "@/components/ReSegmented";
@@ -251,7 +251,7 @@ onUnmounted(() => removeMatchMedia);
 <template>
   <panel>
     <div class="p-6">
-      <p class="mb-3 font-medium text-sm dark:text-white">整体风格</p>
+      <p class="mb-3 font-medium text-base dark:text-white">整体风格</p>
       <Segmented
         class="select-none"
         :modelValue="overallStyle === 'system' ? 2 : dataTheme ? 1 : 0"
@@ -268,7 +268,7 @@ onUnmounted(() => removeMatchMedia);
         "
       />
 
-      <p class="mt-5 mb-3 font-medium text-sm dark:text-white">主题色</p>
+      <p class="mt-5 mb-3 font-medium text-base dark:text-white">主题色</p>
       <ul class="theme-color">
         <li
           v-for="(item, index) in themeColors"
@@ -287,7 +287,7 @@ onUnmounted(() => removeMatchMedia);
         </li>
       </ul>
 
-      <p class="mt-5 mb-3 font-medium text-sm dark:text-white">导航模式</p>
+      <p class="mt-5 mb-3 font-medium text-base dark:text-white">导航模式</p>
       <ul class="pure-theme">
         <li
           ref="verticalRef"
@@ -339,7 +339,7 @@ onUnmounted(() => removeMatchMedia);
         :options="markOptions"
         @change="onChange"
       />
-      <p class="mt-5 mb-1 font-medium text-sm dark:text-white">界面显示</p>
+      <p class="mt-5 mb-3 font-medium text-base dark:text-white">界面显示</p>
       <ul class="setting">
         <li>
           <span class="dark:text-white">隐藏标签页</span>

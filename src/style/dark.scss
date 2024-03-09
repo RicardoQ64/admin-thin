@@ -79,15 +79,8 @@ html.dark {
     }
   }
 
-  /* element-plus */
-  .el-table__cell {
-    background: var(--el-bg-color) !important;
-  }
-
   .el-card {
     --el-card-bg-color: var(--el-bg-color);
-
-    // border: none !important;
   }
 
   .el-backtop {
