@@ -11,6 +11,7 @@
   "OverallStyle": "light",
   "HideTabs": false,
   "HideFooter": true,
+  "Stretch": false,
   "SidebarStatus": true,
   "EpThemeColor": "#1677ff",
   "ShowLogo": true,

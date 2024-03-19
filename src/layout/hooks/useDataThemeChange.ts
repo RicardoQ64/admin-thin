@@ -113,7 +113,8 @@ export function useDataThemeChange() {
     useMultiTagsStoreHook().multiTagsCacheChange(MultiTagsCache);
     toggleClass(Grey, "html-grey", document.querySelector("html"));
     toggleClass(Weak, "html-weakness", document.querySelector("html"));
-    router.push("/login");
+    // router.push("/login");
+    window.location.href = "/";
     useMultiTagsStoreHook().handleTags("equal", [...routerArrays]);
     resetRouter();
   }

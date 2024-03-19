@@ -5,7 +5,7 @@ export interface OptionsType {
   /** 文字 */
   label?: string | (() => VNode | Component);
   /**
-   * @description 图标，采用平台内置的 `useRenderIcon` 函数渲染
+   * @description 图标，采用内置的 `useRenderIcon` 函数渲染
    */
   icon?: string | Component;
   /** 图标属性、样式配置 */

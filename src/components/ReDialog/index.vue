@@ -33,11 +33,10 @@ const footerButtons = computed(() => {
             }
           },
           {
-            label: "提交",
+            label: "确定",
             type: "primary",
             text: true,
             bg: true,
-            loading: true,
             btnClick: ({ dialog: { options, index } }) => {
               const done = () =>
                 closeDialog(options, index, { command: "sure" });
@@ -65,9 +64,10 @@ const fullscreenClass = computed(() => {
 function eventsCallBack(
   event: EventType,
   options: DialogOptions,
-  index: number
+  index: number,
+  isClickFullScreen = false
 ) {
-  fullscreen.value = options?.fullscreen ?? false;
+  if (!isClickFullScreen) fullscreen.value = options?.fullscreen ?? false;
   if (options?.[event] && isFunction(options?.[event])) {
     return options?.[event]({ options, index });
   }
@@ -109,7 +109,17 @@ function handleClose(
         <i
           v-if="!options?.fullscreen"
           :class="fullscreenClass"
-          @click="fullscreen = !fullscreen"
+          @click="
+            () => {
+              fullscreen = !fullscreen;
+              eventsCallBack(
+                'fullscreenCallBack',
+                { ...options, fullscreen },
+                index,
+                true
+              );
+            }
+          "
         >
           <IconifyIconOffline
             class="pure-dialog-svg"
@@ -143,7 +153,6 @@ function handleClose(
           v-for="(btn, key) in footerButtons(options)"
           :key="key"
           v-bind="btn"
-          :loading="btn.loading && options.props?.loading"
           @click="
             btn.btnClick({
               dialog: { options, index },
@@ -157,8 +166,3 @@ function handleClose(
     </template>
   </el-dialog>
 </template>
-<style lang="scss">
-.el-dialog__body {
-  padding-bottom: 0 !important;
-}
-</style>

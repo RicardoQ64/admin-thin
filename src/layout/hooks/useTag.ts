@@ -20,6 +20,7 @@ import {
   hasClass
 } from "@pureadmin/utils";
 
+import Fullscreen from "@iconify-icons/ri/fullscreen-fill";
 import CloseAllTags from "@iconify-icons/ri/subtract-line";
 import CloseOtherTags from "@iconify-icons/ri/text-spacing";
 import CloseRightTags from "@iconify-icons/ri/text-direction-l";
@@ -95,8 +96,8 @@ export function useTags() {
       show: true
     },
     {
-      icon: "fullscreen",
-      text: "整体页面全屏",
+      icon: Fullscreen,
+      text: "内容区全屏",
       divided: true,
       disabled: false,
       show: true

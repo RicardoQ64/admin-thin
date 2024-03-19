@@ -31,6 +31,7 @@
   display: flex;
   align-items: center;
   text-align: center;
+  overflow: hidden;
 }
 
 .login-form {
@@ -46,7 +47,10 @@
   text-transform: uppercase;
   margin: 25px 0;
   color: #666;
-  font: bold 200% Consolas, Monaco, monospace;
+  font:
+    bold 200% Consolas,
+    Monaco,
+    monospace;
 }
 
 @media screen and (max-width: 1180px) {

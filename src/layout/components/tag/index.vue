@@ -3,7 +3,7 @@ import { emitter } from "@/utils/mitt";
 import { RouteConfigs } from "../../types";
 import { useTags } from "../../hooks/useTag";
 import { routerArrays } from "@/layout/types";
-import { useFullscreen, onClickOutside } from "@vueuse/core";
+import { onClickOutside } from "@vueuse/core";
 import { handleAliveRoute, getTopMenu } from "@/router/utils";
 import { useSettingStoreHook } from "@/store/modules/settings";
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags";
@@ -45,7 +45,8 @@ const {
   closeMenu,
   onMounted,
   onMouseenter,
-  onMouseleave
+  onMouseleave,
+  onContentFullScreen
 } = useTags();
 
 const tabDom = ref();
@@ -55,7 +56,6 @@ const contextmenuRef = ref();
 const isShowArrow = ref(false);
 const topPath = getTopMenu()?.path;
 const { VITE_HIDE_HOME } = import.meta.env;
-const { isFullscreen, toggle } = useFullscreen();
 
 const dynamicTagView = async () => {
   await nextTick();
@@ -326,15 +326,15 @@ function onClickDrop(key, item, selectRoute?: RouteConfigs) {
       router.push("/welcome");
       break;
     case 5:
-      // 整体页面全屏
-      toggle();
+      // 内容区全屏
+      onContentFullScreen();
       setTimeout(() => {
-        if (isFullscreen.value) {
-          tagsViews[6].icon = ExitFullscreen;
-          tagsViews[6].text = "退出全屏";
+        if (pureSetting.hiddenSideBar) {
+          tagsViews[5].icon = ExitFullscreen;
+          tagsViews[5].text = "退出内容区全屏";
         } else {
-          tagsViews[6].icon = Fullscreen;
-          tagsViews[6].text = "全屏";
+          tagsViews[5].icon = Fullscreen;
+          tagsViews[5].text = "内容区全屏";
         }
       }, 100);
       break;
@@ -356,13 +356,13 @@ function selectTag(key, item) {
 }
 
 function showMenus(value: boolean) {
-  Array.of(1, 2, 3, 4, 5).forEach(v => {
+  Array.of(0, 1, 2, 3, 4).forEach(v => {
     tagsViews[v].show = value;
   });
 }
 
 function disabledMenus(value: boolean) {
-  Array.of(1, 2, 3, 4, 5).forEach(v => {
+  Array.of(0, 1, 2, 3, 4).forEach(v => {
     tagsViews[v].disabled = value;
   });
 }
@@ -394,25 +394,25 @@ function showMenuModel(
    */
   if (currentIndex === 1 && routeLength !== 2) {
     // 左侧的菜单是顶级菜单，右侧存在别的菜单
-    tagsViews[2].show = false;
-    Array.of(1, 3, 4, 5).forEach(v => {
+    tagsViews[1].show = false;
+    Array.of(0, 2, 3, 4).forEach(v => {
       tagsViews[v].disabled = false;
     });
-    tagsViews[2].disabled = true;
+    tagsViews[1].disabled = true;
   } else if (currentIndex === 1 && routeLength === 2) {
     disabledMenus(false);
     // 左侧的菜单是顶级菜单，右侧不存在别的菜单
-    Array.of(2, 3, 4).forEach(v => {
+    Array.of(1, 2, 3).forEach(v => {
       tagsViews[v].show = false;
       tagsViews[v].disabled = true;
     });
   } else if (routeLength - 1 === currentIndex && currentIndex !== 0) {
     // 当前路由是所有路由中的最后一个
-    tagsViews[3].show = false;
-    Array.of(1, 2, 4, 5).forEach(v => {
+    tagsViews[2].show = false;
+    Array.of(0, 1, 3, 4).forEach(v => {
       tagsViews[v].disabled = false;
     });
-    tagsViews[3].disabled = true;
+    tagsViews[2].disabled = true;
   } else if (currentIndex === 0 || currentPath === `/redirect${topPath}`) {
     // 当前路由为顶级菜单
     disabledMenus(true);
@@ -493,11 +493,6 @@ onClickOutside(contextmenuRef, closeMenu, {
 watch(route, () => {
   activeIndex.value = -1;
   dynamicTagView();
-});
-
-watch(isFullscreen, () => {
-  tagsViews[6].icon = Fullscreen;
-  tagsViews[6].text = "全屏";
 });
 
 onMounted(() => {
@@ -637,7 +632,7 @@ onBeforeUnmount(() => {
           <IconifyIconOffline icon="refresh-right" />
         </span>
       </li>
-      <li @click="onFullScreen">
+      <!-- <li @click="onFullScreen">
         <span
           v-if="pureSetting.hiddenSideBar"
           :title="'内容区全屏'"
@@ -652,7 +647,7 @@ onBeforeUnmount(() => {
         >
           <IconifyIconOffline icon="fullscreen" />
         </span>
-      </li>
+      </li> -->
     </ul>
   </div>
 </template>

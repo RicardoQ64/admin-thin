@@ -1,12 +1,18 @@
 import type { CSSProperties, VNode, Component } from "vue";
 
 type DoneFn = (cancel?: boolean) => void;
-type EventType = "open" | "close" | "openAutoFocus" | "closeAutoFocus";
+type EventType =
+  | "open"
+  | "close"
+  | "openAutoFocus"
+  | "closeAutoFocus"
+  | "fullscreenCallBack";
 type ArgsType = {
   /** `cancel` 点击取消按钮、`sure` 点击确定按钮、`close` 点击右上角关闭按钮或空白页或按下了esc键 */
   command: "cancel" | "sure" | "close";
 };
 
+/** https://element-plus.org/zh-CN/component/dialog.html#attributes */
 type DialogProps = {
   /** `Dialog` 的显示与隐藏 */
   visible?: boolean;
@@ -60,6 +66,7 @@ type BtnClickButton = {
   btn?: ButtonProps;
   index?: number;
 };
+/** https://element-plus.org/zh-CN/component/button.html#button-attributes */
 type ButtonProps = {
   /** 按钮文字 */
   label: string;
@@ -118,6 +125,7 @@ interface DialogOptions extends DialogProps {
   hideFooter?: boolean;
   /**
    * @description 自定义对话框标题的内容渲染器
+   * @see {@link https://element-plus.org/zh-CN/component/dialog.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%A4%B4%E9%83%A8}
    */
   headerRenderer?: ({
     close,
@@ -153,7 +161,7 @@ interface DialogOptions extends DialogProps {
   }: {
     options: DialogOptions;
     index: number;
-    }) => void;
+  }) => void;
   /** `Dialog` 关闭后的回调（只有点击右上角关闭按钮或空白页或按下了esc键关闭页面时才会触发） */
   close?: ({
     options,
@@ -161,7 +169,7 @@ interface DialogOptions extends DialogProps {
   }: {
     options: DialogOptions;
     index: number;
-    }) => void;
+  }) => void;
   /** `Dialog` 关闭后的回调。 `args` 返回的 `command` 值解析：`cancel` 点击取消按钮、`sure` 点击确定按钮、`close` 点击右上角关闭按钮或空白页或按下了esc键  */
   closeCallBack?: ({
     options,
@@ -171,6 +179,14 @@ interface DialogOptions extends DialogProps {
     options: DialogOptions;
     index: number;
     args: any;
+  }) => void;
+  /** 点击全屏按钮时的回调 */
+  fullscreenCallBack?: ({
+    options,
+    index
+  }: {
+    options: DialogOptions;
+    index: number;
   }) => void;
   /** 输入焦点聚焦在 `Dialog` 内容时的回调 */
   openAutoFocus?: ({
