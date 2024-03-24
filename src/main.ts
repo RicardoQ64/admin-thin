@@ -3,13 +3,13 @@ import router from "./router";
 import { setupStore } from "@/store";
 import { getPlatformConfig } from "./config";
 import { createApp, type Directive } from "vue";
+import { useVxeTable } from "@/plugins/vxeTable";
 import { MotionPlugin } from "@vueuse/motion";
 import { useEcharts } from "@/plugins/echarts";
 import { useElementPlus } from "@/plugins/element-plus/elementPlus";
 import { injectResponsiveStorage } from "@/utils/responsive";
 
 import Table from "@pureadmin/table";
-// import { useTable } from "@/plugins/vxe-table";
 import PureDescriptions from "@pureadmin/descriptions";
 
 // 引入重置样式
@@ -61,7 +61,7 @@ getPlatformConfig(app).then(async config => {
     .use(useElementPlus)
     .use(useEcharts)
     .use(Table)
-    //.use(useTable)
+    .use(useVxeTable)
     .use(PureDescriptions);
   app.mount("#app");
 });

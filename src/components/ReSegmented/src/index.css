@@ -1,11 +1,20 @@
 .pure-segmented {
+  --pure-control-padding-horizontal: 12px;
+  --pure-control-padding-horizontal-sm: 8px;
+  --pure-segmented-track-padding: 2px;
+  --pure-segmented-line-width: 1px;
+
+  --pure-segmented-border-radius-small: 4px;
+  --pure-segmented-border-radius-base: 6px;
+  --pure-segmented-border-radius-large: 8px;
+
   box-sizing: border-box;
   display: inline-block;
-  padding: 2px;
-  font-size: 14px;
+  padding: var(--pure-segmented-track-padding);
+  font-size: var(--el-font-size-base);
   color: rgba(0, 0, 0, 0.65);
   background-color: rgb(0 0 0 / 4%);
-  border-radius: 2px;
+  border-radius: var(--pure-segmented-border-radius-base);
 }
 
 .pure-segmented-block {

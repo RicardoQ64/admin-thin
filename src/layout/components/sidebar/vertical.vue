@@ -4,6 +4,7 @@ import { useRoute } from "vue-router";
 import { emitter } from "@/utils/mitt";
 import SidebarItem from "./sidebarItem.vue";
 import { useNav } from "@/layout/hooks/useNav";
+import CenterCollapse from "./centerCollapse.vue";
 import { storageLocal, isAllEmpty } from "@pureadmin/utils";
 import { responsiveStorageNameSpace } from "@/config";
 import { findRouteByPath, getParentPaths } from "@/router/utils";
@@ -11,6 +12,7 @@ import { usePermissionStoreHook } from "@/store/modules/permission";
 import { ref, computed, watch, onMounted, onBeforeUnmount } from "vue";
 
 const route = useRoute();
+const isShow = ref(false);
 const showLogo = ref(
   storageLocal().getItem<StorageConfigs>(
     `${responsiveStorageNameSpace()}configure`
@@ -86,6 +88,8 @@ onBeforeUnmount(() => {
   <div
     v-loading="loading"
     :class="['sidebar-container', showLogo ? 'has-logo' : '']"
+    @mouseenter.prevent="isShow = true"
+    @mouseleave.prevent="isShow = false"
   >
     <Logo v-if="showLogo" :collapse="isCollapse" />
     <el-scrollbar
@@ -112,6 +116,11 @@ onBeforeUnmount(() => {
         />
       </el-menu>
     </el-scrollbar>
+    <CenterCollapse
+      v-if="device !== 'mobile' && (isShow || isCollapse)"
+      :is-active="pureApp.sidebar.opened"
+      @toggleClick="toggleSideBar"
+    />
   </div>
 </template>
 

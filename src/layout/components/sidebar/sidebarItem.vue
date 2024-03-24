@@ -4,6 +4,7 @@ import { getConfig } from "@/config";
 import LinkItem from "./linkItem.vue";
 import { menuType } from "../../types";
 import extraIcon from "./extraIcon.vue";
+import { ReText } from "@/components/ReText";
 import { useNav } from "@/layout/hooks/useNav";
 import { useRenderIcon } from "@/components/ReIcon/src/hooks";
 import {

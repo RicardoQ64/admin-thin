@@ -14,6 +14,59 @@ html.dark {
   /* switch关闭状态下的color 需要时可取用 */
   --pure-switch-off-color: #ffffff3f;
   
+  /* vxe-table */
+  --vxe-form-background-color: #151515;
+  --vxe-toolbar-background-color: #151515;
+  --vxe-pager-background-color: #151515;
+  --vxe-button-default-background-color: color.adjust(#151515, $lightness: 15%);
+  --vxe-table-header-background-color: color.adjust(#151515, $lightness: 5%);
+  --vxe-font-color: color.adjust(#c9d1d9, $lightness: -12%);
+  --vxe-table-header-font-color: #c9d1d9;
+  --vxe-table-footer-font-color: #c9d1d9;
+  --vxe-table-body-background-color: #151515;
+  --vxe-table-footer-background-color: #151515;
+  --vxe-table-row-striped-background-color: #1e1e1e;
+  --vxe-table-border-color: #303030;
+  --vxe-table-row-hover-background-color: #1e1e1e;
+  --vxe-table-row-hover-striped-background-color: color.adjust(#1e1e1e,
+      $lightness: -10%);
+  --vxe-table-row-current-background-color: fade(#1e1e1e, 20%);
+  --vxe-table-row-hover-current-background-color: fade(#1e1e1e, 20%);
+  --vxe-table-column-hover-background-color: fade(#1e1e1e, 20%);
+  --vxe-table-column-current-background-color: fade(#1e1e1e, 20%);
+  --vxe-table-row-checkbox-checked-background-color: fade(#1e1e1e, 15%);
+  --vxe-table-row-hover-checkbox-checked-background-color: fade(#1e1e1e, 20%);
+  --vxe-table-menu-background-color: color.adjust(#303133, $lightness: 10%);
+  --vxe-table-filter-panel-background-color: color.adjust(#151515,
+      $lightness: 5%);
+  --vxe-grid-maximize-background-color: #151515;
+  --vxe-pager-perfect-background-color: #151515;
+  --vxe-pager-perfect-button-background-color: color.adjust(#151515,
+      $lightness: 15%);
+  --vxe-input-background-color: #151515;
+  --vxe-input-border-color: #303030;
+  --vxe-select-panel-background-color: #151515;
+  --vxe-table-popup-border-color: #303030;
+  --vxe-select-option-hover-background-color: color.adjust(#1e1e1e,
+      $lightness: 15%);
+  --vxe-pulldown-panel-background-color: #151515;
+  --vxe-table-fixed-left-scrolling-box-shadow: 8px 0px 10px -5px #43464c;
+  --vxe-table-fixed-right-scrolling-box-shadow: -8px 0px 10px -5px #43464c;
+  --vxe-loading-background-color: rgb(0 0 0 / 50%);
+  --vxe-tooltip-dark-background-color: color.adjust(#303133, $lightness: 25%);
+  --vxe-modal-header-background-color: #1e1e1e;
+  --vxe-modal-body-background-color: #303133;
+  --vxe-modal-border-color: #303030;
+  --vxe-toolbar-panel-background-color: #151515;
+  --vxe-input-disabled-color: color.adjust(#1e1e1e, $lightness: 20%);
+  --vxe-input-disabled-background-color: color.adjust(#1e1e1e, $lightness: 25%);
+  --vxe-checkbox-icon-background-color: color.adjust(#1e1e1e, $lightness: 15%);
+  --vxe-checkbox-checked-icon-border-color: #303030;
+  --vxe-checkbox-indeterminate-icon-background-color: color.adjust(
+    #1e1e1e,
+    $lightness: 15%
+  );
+
   .navbar,
   .tags-view,
   .contextmenu,
@@ -176,91 +229,4 @@ html.dark {
       background: rgb(92 93 96);
     }
   }
-}
-
-/* vxe-table 暗黑模式适配 */
-.vxe-table--header-wrapper,
-.vxe-table--body-wrapper {
-  color: var(--el-text-color-primary);
-  background: var(--el-bg-color) !important;
-}
-
-.vxe-table--render-default.border--full .vxe-header--column,
-.vxe-table--render-default.border--full .vxe-body--column,
-.vxe-table--render-default.border--full .vxe-footer--column {
-  background-image: linear-gradient(var(--el-border-color-lighter),
-      var(--el-border-color-lighter)),
-    linear-gradient(var(--el-border-color-lighter),
-      var(--el-border-color-lighter));
-}
-
-/* 表头 */
-.vxe-table--header-wrapper {
-  background: var(--el-text-color-primary);
-}
-
-.vxe-table--render-wrapper,
-.vxe-table--main-wrapper {
-  border: none;
-}
-
-.vxe-pager.is--perfect,
-.vxe-table--render-default .vxe-table--border-line {
-  border: 1px solid var(--el-border-color-lighter);
-}
-
-.vxe-table--header-border-line {
-  border-bottom: 1px solid var(--el-border-color-lighter) !important;
-}
-
-.vxe-table--render-default .vxe-body--row.row--hover,
-.vxe-pager {
-  background-color: var(--el-border-color-lighter);
-}
-
-.vxe-input--inner,
-.vxe-pager .vxe-pager--jump-prev,
-.vxe-pager .vxe-pager--prev-btn,
-.vxe-pager .vxe-pager--next-btn,
-.vxe-pager .vxe-pager--jump-next,
-.vxe-pager .vxe-pager--num-btn,
-.vxe-pager .vxe-pager--jump .vxe-pager--goto {
-  background-color: transparent;
-  color: var(--el-text-color-primary);
-  // outline: none !important;
-}
-
-.vxe-select-option--wrapper {
-  background: var(--el-bg-color) !important;
-}
-
-.vxe-select-option:not(.is--disabled).is--hover {
-  background: var(--el-color-primary-light-6) !important;
-}
-
-.vxe-modal--wrapper.type--modal .vxe-modal--box,
-.vxe-modal--wrapper.type--alert .vxe-modal--box,
-.vxe-modal--wrapper.type--confirm .vxe-modal--box,
-.vxe-form {
-  background: var(--el-bg-color) !important;
-}
-
-.vxe-modal--box,
-.vxe-modal--header {
-  border: none;
-  background: var(--el-bg-color) !important;
-}
-
-.vxe-modal--title,
-.vxe-button--content,
-.vxe-modal--header-title {
-  color: var(--el-text-color-primary);
-}
-
-.vxe-button.type--button:hover {
-  background: var(--el-color-primary) !important;
-}
-
-.vxe-button {
-  background-color: transparent;
 }

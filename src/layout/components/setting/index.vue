@@ -361,7 +361,7 @@ onUnmounted(() => removeMatchMedia);
       </el-tooltip> -->
       </ul>
 
-      <!--  <span v-if="device !== 'mobile'"> -->
+      <!--  <span v-if="useAppStoreHook().getViewportWidth > 1280"> -->
       <span v-if="false">
         <p :class="['mt-5', pClass]">页宽</p>
         <Segmented
@@ -381,7 +381,7 @@ onUnmounted(() => removeMatchMedia);
         <button
           v-else
           v-ripple="{ class: 'text-gray-300' }"
-          class="bg-transparent flex-c w-full h-20 rounded-md border border-gray-100"
+          class="bg-transparent flex-c w-full h-20 rounded-md border border-[var(--pure-border-color)]"
           @click="setStretch(!settings.stretch)"
         >
           <div

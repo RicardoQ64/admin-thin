@@ -55,6 +55,7 @@ import filePdfLine from "@iconify-icons/ri/file-pdf-line";
 import graduationCapLine from "@iconify-icons/ri/graduation-cap-line";
 import arrowGoBackFill from "@iconify-icons/ri/arrow-go-back-fill";
 import todoLine from "@iconify-icons/ri/todo-line";
+import EditBoxLine from "@iconify-icons/ri/edit-box-line";
 addIcon("dash-board", dashboardIcon);
 addIcon("currency-line", CurrencyLine);
 addIcon("file-list", FileList);
@@ -82,6 +83,7 @@ addIcon("file-pdf-line", filePdfLine);
 addIcon("graduation-cap-line", graduationCapLine);
 addIcon("arrow-go-back-fill", arrowGoBackFill);
 addIcon("todo-line", todoLine);
+addIcon("edit-box-line", EditBoxLine);
 
 // remixicon
 import ArrowRightSLine from "@iconify-icons/ri/arrow-right-s-line";
