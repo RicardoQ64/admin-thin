@@ -14,6 +14,7 @@ import CircleCloseFilled from "@iconify-icons/ep/circle-close-filled";
 import Menu from "@iconify-icons/ep/menu";
 import Mouse from "@iconify-icons/ep/mouse";
 import WindowPower from "@iconify-icons/ep/wind-power";
+import Loading from "@iconify-icons/ep/loading";
 addIcon("coin", Coin);
 addIcon("delete", Delete);
 addIcon("link", Link);
@@ -26,6 +27,7 @@ addIcon("circle-close-filled", CircleCloseFilled);
 addIcon("menu", Menu);
 addIcon("mouse", Mouse);
 addIcon("wind-power", WindowPower);
+addIcon("loading", Loading);
 
 // radix-icons
 import dashboardIcon from "@iconify-icons/radix-icons/dashboard";

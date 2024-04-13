@@ -29,8 +29,8 @@ const ruleFormRef = ref<FormInstance>();
 const { initStorage } = useLayout();
 initStorage();
 
-const { dataTheme, overallStyle, dataThemeChange } = useDataThemeChange();
-dataThemeChange(overallStyle.value);
+const { dataThemeChange } = useDataThemeChange();
+dataThemeChange();
 const { title } = useNav();
 
 const ruleForm = reactive({
@@ -52,13 +52,16 @@ const onLogin = async (formEl: FormInstance | undefined) => {
           if (res.success) {
             // 获取后端路由
             return initRouter(ruleForm.user_no).then(() => {
-              router.push(getTopMenu(true).path);
-              message("登录成功", { type: "success" });
+              router.push(getTopMenu(true).path).then(() => {
+                message("登录成功", { type: "success" });
+              });
             });
+          } else {
+            message("登录失败", { type: "error" });
           }
         })
         .catch(error => {
-          message(error.resonse.data.detail, { type: "warning" });
+          message(error.response.data.detail, { type: "warning" });
         })
         .finally(() => (loading.value = false));
     } else {
@@ -152,7 +155,7 @@ watch(checked, bool => {
             </Motion>
 
             <Motion :delay="250">
-              <div class="w-full h-[20px] flex justify-between items-center">
+              <!-- <div class="w-full h-[20px] flex justify-between items-center">
                 <el-checkbox v-model="checked">
                   <span class="flex">
                     保持登录
@@ -166,7 +169,7 @@ watch(checked, bool => {
                   </span>
                 </el-checkbox>
                 <el-button link type="primary"> 忘记密码 </el-button>
-              </div>
+              </div> -->
               <el-button
                 class="w-full mt-4"
                 size="default"

@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import { h, onMounted, ref, useSlots } from "vue";
-import { useTippy, type TippyOptions } from "vue-tippy";
+import { type TippyOptions, useTippy } from "vue-tippy";
+
+defineOptions({
+  name: "ReText"
+});
 
 const props = defineProps({
   // 行数

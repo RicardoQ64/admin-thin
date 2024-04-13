@@ -5,6 +5,7 @@ import { useNav } from "@/layout/hooks/useNav";
 import FullScreen from "./sidebar/fullScreen.vue";
 import Breadcrumb from "./sidebar/breadCrumb.vue";
 import topCollapse from "./sidebar/topCollapse.vue";
+import AccountSettingsIcon from "@iconify-icons/ri/user-settings-line";
 import LogoutCircleRLine from "@iconify-icons/ri/logout-circle-r-line";
 import Setting from "@iconify-icons/ri/settings-3-line";
 
@@ -15,8 +16,10 @@ const {
   onPanel,
   pureApp,
   username,
+  userAvatar,
   org,
   avatarsStyle,
+  toAccountSettings,
   toggleSideBar
 } = useNav();
 </script>
@@ -47,7 +50,7 @@ const {
       <!-- 退出登录 -->
       <el-dropdown trigger="click">
         <span class="el-dropdown-link navbar-bg-hover select-none">
-          <img src="/avator.jpeg" :style="avatarsStyle" />
+          <img :src="userAvatar" :style="avatarsStyle" />
           <p v-if="username" class="dark:text-white">
             {{ username }}
             <el-divider v-if="org" direction="vertical" />
@@ -56,6 +59,13 @@ const {
         </span>
         <template #dropdown>
           <el-dropdown-menu class="logout">
+            <el-dropdown-item @click="toAccountSettings">
+              <IconifyIconOffline
+                :icon="AccountSettingsIcon"
+                style="margin: 5px"
+              />
+              账号设置
+            </el-dropdown-item>
             <el-dropdown-item @click="logout">
               <IconifyIconOffline
                 :icon="LogoutCircleRLine"
@@ -126,7 +136,7 @@ const {
 }
 
 .logout {
-  max-width: 120px;
+  width: 120px;
 
   ::v-deep(.el-dropdown-menu__item) {
     display: inline-flex;

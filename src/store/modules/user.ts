@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { store } from "@/store";
 import type { userType } from "./types";
 import { routerArrays } from "@/layout/types";
-import { router, resetRouter } from "@/router";
+import { resetRouter } from "@/router";
 import { storageLocal } from "@pureadmin/utils";
 import { getLogin, refreshTokenApi } from "@/api/login";
 import type { UserResult, RefreshTokenResult } from "@/api/login";
@@ -12,6 +12,8 @@ import { type DataInfo, setToken, removeToken, userKey } from "@/utils/auth";
 export const useUserStore = defineStore({
   id: "pure-user",
   state: (): userType => ({
+    // 头像
+    avatar: storageLocal().getItem<DataInfo<number>>(userKey)?.avatar ?? "",
     // 工号
     userNo: storageLocal().getItem<DataInfo<number>>(userKey)?.user_no ?? "",
     // 用户名
@@ -28,6 +30,10 @@ export const useUserStore = defineStore({
     isRemembered: false
   }),
   actions: {
+    /** 存储头像 */
+    SET_AVATAR(avatar: string) {
+      this.avatar = avatar;
+    },
     /** 存储工号 */
     SET_USERNO(userNo: string) {
       this.userNo = userNo;
@@ -61,10 +67,8 @@ export const useUserStore = defineStore({
       return new Promise<UserResult>((resolve, reject) => {
         getLogin(data)
           .then(data => {
-            if (data) {
-              setToken(data.data);
-              resolve(data);
-            }
+            if (data?.success) setToken(data.data);
+            resolve(data);
           })
           .catch(error => {
             reject(error);

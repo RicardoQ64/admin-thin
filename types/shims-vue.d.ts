@@ -12,4 +12,3 @@ declare module "*.scss" {
 declare module "vue3-puzzle-vcode";
 declare module "vue-virtual-scroller";
 declare module "vuedraggable/src/vuedraggable";
-declare module "element-plus/dist/locale/zh-cn.mjs";

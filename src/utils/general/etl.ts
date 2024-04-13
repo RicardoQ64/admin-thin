@@ -17,6 +17,40 @@ export const formatPercent = num => {
   });
 };
 
+
+export const numRule = value => {
+  let endValue
+  let text = ''
+  if (value <= 1000) {
+    endValue = value
+  }
+  if (value > 1000) {
+    endValue = new Intl.NumberFormat().format(value)
+  }
+  if (value > 10000) {
+    text = '万'
+    endValue = (value / 10000).toFixed(1) + text
+  }
+  if (value > 10000000) {
+    text = '千万'
+    endValue = (value / 10000000).toFixed(1) + text
+  }
+  if (value > 100000000) {
+    text = '亿'
+    endValue = (value / 100000000).toFixed(1) + text
+  }
+  return endValue
+}
+
+/** 判断数字是否为空 */
+export function isEmptyNumber(obj: any): boolean {
+  return (
+    obj === null ||
+    obj === undefined ||
+    obj === 0
+  );
+}
+
 /** 判断数组是否为空 */
 export function isEmptyArray(obj: any): boolean {
   return (
