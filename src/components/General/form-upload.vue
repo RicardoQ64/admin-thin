@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { UploadFile, UploadProps } from "element-plus";
+import { InputNumberEmits, UploadFile, UploadProps } from "element-plus";
 import { getKeyList } from "@pureadmin/utils";
 import { baseApi } from "@/api/utils";
 import { message } from "@/utils/message";
@@ -9,10 +9,16 @@ import Add from "@iconify-icons/ep/plus";
 import Eye from "@iconify-icons/ri/eye-line";
 import Delete from "@iconify-icons/ri/delete-bin-7-line";
 
-const props = defineProps({
-  user: String,
-  limit: Number,
-  label: String
+interface Props {
+  user: String;
+  limit: Number;
+  label: String;
+  max: Number;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  label: "点击上传文件",
+  max: 2
 });
 
 // 上传
@@ -31,16 +37,16 @@ const onBefore = file => {
     message("只能上传图片");
     return false;
   }
-  const isExceed = file.size / 1024 / 1024 > 2;
+  const isExceed = file.size / 1024 / 1024 > props.max;
   if (isExceed) {
-    message(`单个图片大小不能超过2MB`);
+    message(`单个图片大小不能超过${props.max}MB`);
     return false;
   }
 };
 
 /** 超出最大上传数时触发 */
 const onExceed = () => {
-  message("最多上传2张图片，请先删除在上传");
+  message("最多上传" + props.limit + "张图片，请先删除在上传");
 };
 
 const onSuccess: UploadProps["onSuccess"] = res => {
