@@ -34,13 +34,9 @@ const props = {
     type: Boolean,
     default: false
   },
-  /** 控件尺寸  */
+  /** 控件尺寸	 */
   size: {
-    type: String as PropType<"small" | "default" | "large">},
-  /** 是否全局禁用，默认 `false` */
-  disabled: {
-    type: Boolean,
-    default: false
+    type: String as PropType<"small" | "default" | "large">
   }
 };
 
@@ -61,7 +57,7 @@ export default defineComponent({
       : ref(0);
 
     function handleChange({ option, index }, event: Event) {
-      if (props.disabled || option.disabled) return;
+      if (option.disabled) return;
       event.preventDefault();
       isNumber(props.modelValue)
         ? emit("update:modelValue", index)
@@ -71,7 +67,6 @@ export default defineComponent({
     }
 
     function handleMouseenter({ option, index }, event: Event) {
-      if (props.disabled) return;
       event.preventDefault();
       curMouseActive.value = index;
       if (option.disabled || curIndex.value === index) {
@@ -84,7 +79,6 @@ export default defineComponent({
     }
 
     function handleMouseleave(_, event: Event) {
-      if (props.disabled) return;
       event.preventDefault();
       curMouseActive.value = -1;
     }
@@ -130,16 +124,14 @@ export default defineComponent({
             ref={`labelRef${index}`}
             class={[
               "pure-segmented-item",
-              (props.disabled || option?.disabled) &&
-                "pure-segmented-item-disabled"
+              option?.disabled && "pure-segmented-item-disabled"
             ]}
             style={{
               background:
                 curMouseActive.value === index ? segmentedItembg.value : "",
-              color: props.disabled
-                ? null
-                : !option.disabled &&
-                    (curIndex.value === index || curMouseActive.value === index)
+              color:
+                !option.disabled &&
+                (curIndex.value === index || curMouseActive.value === index)
                   ? isDark.value
                     ? "rgba(255, 255, 255, 0.85)"
                     : "rgba(0,0,0,.88)"

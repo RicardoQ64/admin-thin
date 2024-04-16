@@ -1,6 +1,7 @@
-import "./index.scss";
 import { isFunction } from "@pureadmin/utils";
-import { type PropType, h, defineComponent } from "vue";
+import { h, defineComponent } from "vue";
+import type { PropType } from "vue";
+import "./index.scss";
 import type {
   TreeNode,
   TreeData,

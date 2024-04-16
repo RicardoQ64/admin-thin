@@ -9,8 +9,6 @@ export interface DataInfo<T> {
   expires: T;
   /** 用于调用刷新accessToken的接口时所需的token */
   refreshToken: string;
-  /** 头像 */
-  avatar?: string;
   /** 工号 */
   user_no?: string;
   /** 用户名 */
@@ -71,16 +69,14 @@ export function setToken(data: DataInfo<Date>) {
       : {}
   );
 
-  function setUserKey({
-    avatar,
-    user_no,
-    username,
-    roles,
-    org_no,
-    org,
-    phone
-  }) {
-    useUserStoreHook().SET_AVATAR(avatar);
+  function setUserKey(
+    user_no: string,
+    username: string,
+    roles: Array<string>,
+    org_no: string,
+    org: string,
+    phone: string
+  ) {
     useUserStoreHook().SET_USERNO(user_no);
     useUserStoreHook().SET_USERNAME(username);
     useUserStoreHook().SET_ROLES(roles);
@@ -90,7 +86,6 @@ export function setToken(data: DataInfo<Date>) {
     storageLocal().setItem(userKey, {
       refreshToken,
       expires,
-      avatar,
       user_no,
       username,
       roles,
@@ -102,18 +97,15 @@ export function setToken(data: DataInfo<Date>) {
 
   if (data.user_no && data.username && data.org_no && data.org) {
     const { user_no, username, roles, org_no, org, phone } = data;
-    setUserKey({
-      avatar: data?.avatar ?? "",
+    setUserKey(
       user_no,
       username,
-      roles: roles ?? [],
+      roles ? roles : [],
       org_no,
       org,
-      phone: phone ?? ""
-    });
+      phone ? phone : ""
+    );
   } else {
-    const avatar =
-      storageLocal().getItem<DataInfo<number>>(userKey)?.avatar ?? "";
     const user_no =
       storageLocal().getItem<DataInfo<number>>(userKey)?.user_no ?? "";
     const username =
@@ -125,7 +117,7 @@ export function setToken(data: DataInfo<Date>) {
     const org = storageLocal().getItem<DataInfo<number>>(userKey)?.org ?? "";
     const phone =
       storageLocal().getItem<DataInfo<number>>(userKey)?.phone ?? "";
-    setUserKey({ avatar, user_no, username, roles, org_no, org, phone });
+    setUserKey(user_no, username, roles, org_no, org, phone);
   }
 }
 

@@ -4,12 +4,12 @@ import { emitter } from "@/utils/mitt";
 import type { routeMetaType } from "../types";
 import { getTopMenu } from "@/router/utils";
 import { useFullscreen } from "@vueuse/core";
+import { useGlobal } from "@pureadmin/utils";
 import { computed, CSSProperties } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { router, remainingPaths } from "@/router";
 import { useAppStoreHook } from "@/store/modules/app";
 import { useUserStoreHook } from "@/store/modules/user";
-import { useGlobal, isAllEmpty } from "@pureadmin/utils";
 import { usePermissionStoreHook } from "@/store/modules/permission";
 import ExitFullscreen from "@iconify-icons/ri/fullscreen-exit-fill";
 import Fullscreen from "@iconify-icons/ri/fullscreen-fill";
@@ -33,13 +33,6 @@ export function useNav() {
       justifyContent: "space-between",
       overflow: "hidden"
     };
-  });
-
-  /** 头像（如果头像为空则使用 src/assets/avatar.svg ） */
-  const userAvatar = computed(() => {
-    return isAllEmpty(useUserStoreHook()?.avatar)
-      ? "/avator.jpeg"
-      : useUserStoreHook()?.avatar;
   });
 
   /** 工号 */
@@ -113,10 +106,6 @@ export function useNav() {
     emitter.emit("openPanel");
   }
 
-  function toAccountSettings() {
-    router.push({ name: "AccountSettings" });
-  }
-
   function toggleSideBar() {
     pureApp.toggleSideBar();
   }
@@ -176,13 +165,11 @@ export function useNav() {
     pureApp,
     user_no,
     username,
-    userAvatar,
     roles,
     org_no,
     org,
     phone,
     avatarsStyle,
-    tooltipEffect,
-    toAccountSettings
+    tooltipEffect
   };
 }

@@ -11,7 +11,6 @@ import { useRenderIcon } from "@/components/ReIcon/src/hooks";
 import { getParentPaths, findRouteByPath } from "@/router/utils";
 import { usePermissionStoreHook } from "@/store/modules/permission";
 import LogoutCircleRLine from "@iconify-icons/ri/logout-circle-r-line";
-import AccountSettingsIcon from "@iconify-icons/ri/user-settings-line";
 import Setting from "@iconify-icons/ri/settings-3-line";
 
 const menuRef = ref();
@@ -25,12 +24,10 @@ const {
   onPanel,
   pureApp,
   resolvePath,
-  userAvatar,
   username,
   org,
   getDivStyle,
   avatarsStyle,
-  toAccountSettings,
   toggleSideBar
 } = useNav();
 
@@ -112,7 +109,7 @@ watch(
       <!-- 退出登录 -->
       <el-dropdown trigger="click">
         <span class="el-dropdown-link navbar-bg-hover select-none">
-          <img :src="userAvatar" :style="avatarsStyle" />
+          <img src="/avator.jpeg" :style="avatarsStyle" />
           <p v-if="username" class="dark:text-white">
             {{ username }}
             <el-divider v-if="org" direction="vertical" />
@@ -121,13 +118,6 @@ watch(
         </span>
         <template #dropdown>
           <el-dropdown-menu class="logout">
-            <el-dropdown-item @click="toAccountSettings">
-              <IconifyIconOffline
-                :icon="AccountSettingsIcon"
-                style="margin: 5px"
-              />
-              账号设置
-            </el-dropdown-item>
             <el-dropdown-item @click="logout">
               <IconifyIconOffline
                 :icon="LogoutCircleRLine"
@@ -155,7 +145,7 @@ watch(
 }
 
 .logout {
-  width: 120px;
+  max-width: 120px;
 
   ::v-deep(.el-dropdown-menu__item) {
     display: inline-flex;
