@@ -15,6 +15,7 @@ import Menu from "@iconify-icons/ep/menu";
 import Mouse from "@iconify-icons/ep/mouse";
 import WindowPower from "@iconify-icons/ep/wind-power";
 import Loading from "@iconify-icons/ep/loading";
+import DownLoad from "@iconify-icons/ep/download";
 addIcon("coin", Coin);
 addIcon("delete", Delete);
 addIcon("link", Link);
@@ -28,6 +29,7 @@ addIcon("menu", Menu);
 addIcon("mouse", Mouse);
 addIcon("wind-power", WindowPower);
 addIcon("loading", Loading);
+addIcon("download", DownLoad);
 
 // radix-icons
 import dashboardIcon from "@iconify-icons/radix-icons/dashboard";
